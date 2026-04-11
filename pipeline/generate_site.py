@@ -32,7 +32,7 @@ CACHE_DIR = Path("data/package_cache")
 TEMPLATES_DIR = Path("site/templates")
 STATIC_DIR = Path("site/static")
 OUTPUT_DIR = Path("site/output")
-SITE_URL = "https://pythonpackagehub.com"
+SITE_URL = "https://pip.dev-guides.com"
 
 
 # ── Import name overrides (pip name → Python import name) ────────────────────

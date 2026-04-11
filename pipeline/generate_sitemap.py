@@ -15,7 +15,7 @@ from datetime import date
 from pathlib import Path
 
 OUTPUT_DIR = Path("site/output")
-SITE_URL = "https://pythonpackagehub.com"
+SITE_URL = "https://pip.dev-guides.com"
 
 
 def build_sitemap(output_dir: Path, site_url: str) -> str:
