@@ -45,7 +45,7 @@ The first build fetches PyPI data and generates all pages. Subsequent builds use
 
 ## Step 3 — Set Up a Custom Domain (Optional)
 
-1. Register a domain (e.g., `pythonpackagehub.com` — ~$10/year via Cloudflare Registrar)
+1. Register a domain (e.g., `pip.dev-guides.com` — configured via Cloudflare Pages → Custom domains)
 2. In Cloudflare Pages → **Custom domains** → Add your domain
 3. Cloudflare automatically provisions HTTPS
 
