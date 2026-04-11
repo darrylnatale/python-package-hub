@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>How to Install {{ pkg.name }} in Python — Guide &amp; Error Fixes | Python Package Hub</title>
+<meta name="description" content="Complete guide to installing the {{ pkg.name }} Python package. Includes pip commands, virtual environment setup, code examples, and fixes for common {{ pkg.name }} errors.">
+<link rel="canonical" href="{{ site_url }}/{{ pkg.slug }}/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Install {{ pkg.name }} in Python",
+  "description": "Step-by-step guide to install the {{ pkg.name }} Python package.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Install with pip",
+      "text": "Run pip install {{ pkg.name }} in your terminal."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify installation",
+      "text": "Run python -c \"import {{ pkg.import_name }}\" to confirm the package installed."
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>{{ pkg.name }}</span>
+</nav>
+
+<article class="package-page">
+
+  <div class="package-header">
+    <h1>How to Install <code>{{ pkg.name }}</code> in Python</h1>
+    <div class="package-meta">
+      {% if pkg.version %}<span class="badge">v{{ pkg.version }}</span>{% endif %}
+      {% if category_label %}<span class="badge badge-cat">{{ category_label }}</span>{% endif %}
+      {% if pkg.requires_python %}<span class="badge">Python {{ pkg.requires_python }}</span>{% endif %}
+      {% if pkg.license %}<span class="badge">{{ pkg.license }}</span>{% endif %}
+    </div>
+    {% if pkg.summary %}<p class="summary">{{ pkg.summary }}</p>{% endif %}
+  </div>
+
+  <div class="install-quick">
+    <span class="install-label">Install</span>
+    <code class="install-cmd">pip install {{ pkg.name }}</code>
+  </div>
+
+  <!-- AdSense inline unit -->
+  <!--
+  <ins class="adsbygoogle" style="display:block;text-align:center;"
+       data-ad-layout="in-article" data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+
+  <!-- What is this package -->
+  <section>
+    <h2>What is {{ pkg.name }}?</h2>
+    {% if pkg.summary %}<p>{{ pkg.summary }}</p>{% endif %}
+    {% for para in pkg.description_paragraphs %}
+    <p>{{ para }}</p>
+    {% endfor %}
+    <div class="pkg-links">
+      {% if pkg.home_page %}
+      <a href="{{ pkg.home_page }}" rel="nofollow" target="_blank">Documentation &rarr;</a>
+      {% endif %}
+      <a href="https://pypi.org/project/{{ pkg.name }}/" rel="nofollow" target="_blank">PyPI page &rarr;</a>
+      {% if pkg.author %}<span class="meta-small">Author: {{ pkg.author }}</span>{% endif %}
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  {% if code_example %}
+  <section>
+    <h2>Quick Start</h2>
+    <p>Minimal example to get started with <code>{{ pkg.name }}</code>:</p>
+    <pre><code>{{ code_example }}</code></pre>
+  </section>
+  {% endif %}
+
+  <!-- Installation -->
+  <section>
+    <h2>Installation</h2>
+
+    <h3>pip (standard)</h3>
+    <pre><code>{{ install_commands.pip }}</code></pre>
+
+    <h3>Virtual environment (recommended)</h3>
+    <pre><code>{{ install_commands.venv }}</code></pre>
+
+    <h3>pip3</h3>
+    <pre><code>{{ install_commands.pip3 }}</code></pre>
+
+    <h3>conda</h3>
+    <pre><code>{{ install_commands.conda }}</code></pre>
+
+    <h3>Poetry</h3>
+    <pre><code>{{ install_commands.poetry }}</code></pre>
+  </section>
+
+  <!-- Dependencies -->
+  {% if dependencies %}
+  <section>
+    <h2>Dependencies</h2>
+    <p>Installing <code>{{ pkg.name }}</code> will also install these packages:</p>
+    <div class="dep-list">
+      {% for dep in dependencies %}
+      <a href="/{{ dep | lower | replace('_', '-') }}/" class="dep-tag">{{ dep }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Verify -->
+  <section>
+    <h2>Verify the Installation</h2>
+    <p>After installing, confirm the package is available:</p>
+    <pre><code>{{ verify_command }}</code></pre>
+    <p>If this prints a version number, installation succeeded. If you see a <code>ModuleNotFoundError</code>, see the errors section below.</p>
+  </section>
+
+  <!-- Installation errors -->
+  <section>
+    <h2>Installation Errors</h2>
+    <p>Common errors when installing <code>{{ pkg.name }}</code> with pip.</p>
+    {% for err in install_errors %}
+    <div class="error-card">
+      <h3 class="error-title">{{ err.error }}</h3>
+      <p><strong>Cause:</strong> {{ err.cause }}</p>
+      <p><strong>Fix:</strong> {{ err.fix | safe }}</p>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- Runtime errors (package-specific) -->
+  {% if runtime_errors %}
+  <section>
+    <h2>Runtime Errors</h2>
+    <p>Common errors when using <code>{{ pkg.name }}</code> after installation.</p>
+    {% for err in runtime_errors %}
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">{{ err.error }}</h3>
+      <p><strong>Cause:</strong> {{ err.cause }}</p>
+      <p><strong>Fix:</strong> {{ err.fix | safe }}</p>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- Recent releases -->
+  {% if recent_releases %}
+  <section>
+    <h2>Recent Releases</h2>
+    <table class="releases-table">
+      <thead>
+        <tr><th>Version</th><th>Released</th></tr>
+      </thead>
+      <tbody>
+        {% for rel in recent_releases %}
+        <tr{% if rel.is_current %} class="current-release"{% endif %}>
+          <td><code>{{ rel.version }}</code>{% if rel.is_current %} <span class="badge badge-cat">latest</span>{% endif %}</td>
+          <td>{{ rel.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="meta-small"><a href="https://pypi.org/project/{{ pkg.name }}/#history" rel="nofollow" target="_blank">Full release history on PyPI &rarr;</a></p>
+  </section>
+  {% endif %}
+
+  <!-- Upgrade / uninstall -->
+  <section>
+    <h2>Manage {{ pkg.name }}</h2>
+
+    <h3>Upgrade to latest version</h3>
+    <pre><code>pip install --upgrade {{ pkg.name }}</code></pre>
+
+    <h3>Install a specific version</h3>
+    <pre><code>pip install {{ pkg.name }}=={{ pkg.version }}</code></pre>
+
+    <h3>Uninstall</h3>
+    <pre><code>pip uninstall {{ pkg.name }}</code></pre>
+
+    <h3>Check what is installed</h3>
+    <pre><code>pip show {{ pkg.name }}</code></pre>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: {{ today }} &bull; Data from <a href="https://pypi.org/project/{{ pkg.name }}/" rel="nofollow" target="_blank">PyPI</a></p>
+  </div>
+
+</article>
+
+{% endblock %}

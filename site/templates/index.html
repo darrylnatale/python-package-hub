@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Python Package Hub — Install Any Python Package</title>
+<meta name="description" content="Installation guides and error fixes for {{ total }}+ Python packages. Find pip install commands, virtual environment setup, and common error solutions.">
+<link rel="canonical" href="{{ site_url }}/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Python Package Hub",
+  "url": "{{ site_url }}",
+  "description": "Installation guides and error fixes for Python packages.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site_url }}/{search_term_string}/",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+  <h1>Python Package Hub</h1>
+  <p class="hero-sub">Installation guides and error fixes for {{ total }}+ Python packages.</p>
+  <p>Find the right <code>pip install</code> command and fix common import errors — fast.</p>
+</div>
+
+<!-- AdSense unit -->
+<!--
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="XXXXXXXXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+-->
+
+<section>
+  <h2>Popular Packages</h2>
+  <div class="package-grid">
+    {% for pkg in packages %}
+    <a href="/{{ pkg.slug }}/" class="package-card">
+      <div class="package-card-name">{{ pkg.name }}</div>
+      {% if pkg.summary %}
+      <div class="package-card-summary">{{ pkg.summary[:80] }}{% if pkg.summary | length > 80 %}…{% endif %}</div>
+      {% endif %}
+      <div class="package-card-cat">{{ pkg.category }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about-section">
+  <h2>About Python Package Hub</h2>
+  <p>Python Package Hub provides clear, up-to-date installation guides for Python packages. Every page covers:</p>
+  <ul>
+    <li>pip, conda, and poetry install commands</li>
+    <li>Virtual environment setup</li>
+    <li>How to verify the installation</li>
+    <li>Fixes for the most common errors</li>
+  </ul>
+  <p>Package data is sourced directly from <a href="https://pypi.org" rel="nofollow">PyPI</a>.</p>
+</section>
+
+{% endblock %}
