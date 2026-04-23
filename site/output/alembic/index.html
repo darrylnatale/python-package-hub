@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>How to Install alembic in Python — Guide &amp; Error Fixes | Python Package Hub</title>
+<meta name="description" content="Complete guide to installing the alembic Python package. Includes pip commands, virtual environment setup, code examples, and fixes for common alembic errors.">
+<link rel="canonical" href="https://pip.dev-guides.com/alembic/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Install alembic in Python",
+  "description": "Step-by-step guide to install the alembic Python package.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Install with pip",
+      "text": "Run pip install alembic in your terminal."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify installation",
+      "text": "Run python -c \"import alembic\" to confirm the package installed."
+    }
+  ]
+}
+</script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <!-- Cloudflare Web Analytics — replace TOKEN with your token -->
+  <!--
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TOKEN"}'></script>
+  -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+
+    <div class="content">
+      
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>alembic</span>
+</nav>
+
+<article class="package-page">
+
+  <div class="package-header">
+    <h1>How to Install <code>alembic</code> in Python</h1>
+    <div class="package-meta">
+      <span class="badge">v1.18.4</span>
+      <span class="badge badge-cat">CLI &amp; Utilities</span>
+      <span class="badge">Python &gt;=3.10</span>
+      
+    </div>
+    <p class="summary">A database migration tool for SQLAlchemy.</p>
+  </div>
+
+  <div class="install-quick">
+    <span class="install-label">Install</span>
+    <code class="install-cmd">pip install alembic</code>
+  </div>
+
+  <!-- AdSense inline unit -->
+  <!--
+  <ins class="adsbygoogle" style="display:block;text-align:center;"
+       data-ad-layout="in-article" data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+
+  <!-- What is this package -->
+  <section>
+    <h2>What is alembic?</h2>
+    <p>A database migration tool for SQLAlchemy.</p>
+    
+    <p>Alembic is a database migrations tool written by the author
+of . A migrations tool
+offers the following functionality:</p>
+    
+    <p>Can emit ALTER statements to a database in order to change
+ the structure of tables and other constructs
+ Provides a system whereby &#34;migration scripts&#34; may be constructed;
+ each script indicates a particular series of steps that can &#34;upgrade&#34; a
+ target database to a new version, and optionally a series of steps that can
+ &#34;downgrade&#34; similarly, doing the same steps in reverse.
+ Allows the scripts to execute in some sequential manner.</p>
+    
+    <p>Very open ended and transparent configuration and operation. A new
+ Alembic environment is generated from a set of templates which is selected
+ among a set of options when setup first occurs. The templates then deposit a
+ series of scripts that define fully how database connectivity is established
+ and how migration scripts are invoked; the migration scripts themselves are
+ generated from a template within that series of scripts. The scripts can
+ then be further customized to define exactly how databases will be
+ interacted with and what structure new migration files should take.
+ Full support for transactional DDL. The default scripts ensure that all
+ migrations occur within a transaction - for those databases which support
+ this (Postgresql, Microsoft SQL Server), migrations can be tested with no
+ need to manually undo changes upon failure.
+ Minimalist script construction. Basic operations like renaming
+ tables/columns, adding/removing columns, changing column attributes can be
+ performed through one line commands like altercolumn(), renametable(),
+ addconstraint(). There is no need to recreate full SQLAlchemy Table
+ structures for simple operations like these - the functions themselves
+ generate minimalist schema structures behind the scenes to achieve the given
+ DDL sequence.
+ &#34;auto generation&#34; of migrations. While real world migrations are far more
+ complex than what can be automatically determined, Alembic can still
+ eliminate the initial grunt work in generating new migration directives
+ from an altered schema. The `` feature will inspect the
+ current status of a database using SQLAlchemy&#39;s schema inspection
+ capabilities, compare it to the current state of the database model as
+ specified in Python, and generate a series of &#34;candidate&#34; migrations,
+ rendering them into a new migration script as Python directives. The
+ developer then edits the new file, adding additional directives and data
+ migrations as needed, to produce a finished migration. Table and column
+ level changes can be detected, with constraints and indexes to follow as
+ well.
+ Full support for migrations generated as SQL scripts. Those of us who
+ work in corporate environments know that direct access to DDL commands on a
+ production database is a rare privilege, and DBAs want textual SQL scripts.
+ Alembic&#39;s usage model and commands are oriented towards being able to run a
+ series of migrations into a textual output file as easily as it runs them
+ directly to a database. Care must be taken in this mode to not invoke other
+ operations that rely upon in-memory SELECTs of rows - Alembic tries to
+ provide helper constructs like bulkinsert() to help with data-oriented
+ operations that are compatible with script-based DDL.
+ Non-linear, dependency-graph versioning. Scripts are given UUID
+ identifiers similarly to a DVCS, and the linkage of one script to the next
+ is achieved via human-editable markers within the scripts themselves.
+ The structure of a set of migration files is considered as a
+ directed-acyclic graph, meaning any migration file can be dependent
+ on any other arbitrary set of migration files, or none at
+ all. Through this open-ended system, migration files can be organized
+ into branches, multiple roots, and mergepoints, without restriction.
+ Commands are provided to produce new branches, roots, and merges of
+ branches automatically.
+ Provide a library of ALTER constructs that can be used by any SQLAlchemy
+ application. The DDL constructs build upon SQLAlchemy&#39;s own DDLElement base
+ and can be used standalone by any application or script.
+* At long last, bring SQLite and its inability to ALTER things into the fold,
+ but in such a way that SQLite&#39;s very special workflow needs are accommodated
+ in an explicit way that makes the most of a bad situation, through the
+ concept of a &#34;batch&#34; migration, where multiple changes to a table can
+ be batched together to form a series of instructions for a single, subsequent
+ &#34;move-and-copy&#34; workflow. You can even use &#34;move-and-copy&#34; workflow for
+ other databases, if you want to recreate a table in the background
+ on a busy system.</p>
+    
+    <div class="pkg-links">
+      
+      <a href="https://pypi.org/project/alembic/" rel="nofollow" target="_blank">PyPI page &rarr;</a>
+      <span class="meta-small">Author: Mike Bayer &lt;mike_mp@zzzcomputing.com&gt;</span>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  
+  <section>
+    <h2>Quick Start</h2>
+    <p>Minimal example to get started with <code>alembic</code>:</p>
+    <pre><code>import alembic
+
+print(alembic.__version__)</code></pre>
+  </section>
+  
+
+  <!-- Installation -->
+  <section>
+    <h2>Installation</h2>
+
+    <h3>pip (standard)</h3>
+    <pre><code>pip install alembic</code></pre>
+
+    <h3>Virtual environment (recommended)</h3>
+    <pre><code>python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install alembic</code></pre>
+
+    <h3>pip3</h3>
+    <pre><code>pip3 install alembic</code></pre>
+
+    <h3>conda</h3>
+    <pre><code>conda install -c conda-forge alembic</code></pre>
+
+    <h3>Poetry</h3>
+    <pre><code>poetry add alembic</code></pre>
+  </section>
+
+  <!-- Dependencies -->
+  
+  <section>
+    <h2>Dependencies</h2>
+    <p>Installing <code>alembic</code> will also install these packages:</p>
+    <div class="dep-list">
+      
+      <a href="/sqlalchemy/" class="dep-tag">SQLAlchemy</a>
+      
+      <a href="/mako/" class="dep-tag">Mako</a>
+      
+      <a href="/typing-extensions/" class="dep-tag">typing-extensions</a>
+      
+      <a href="/tomli/" class="dep-tag">tomli</a>
+      
+    </div>
+  </section>
+  
+
+  <!-- Verify -->
+  <section>
+    <h2>Verify the Installation</h2>
+    <p>After installing, confirm the package is available:</p>
+    <pre><code>python -c &#34;import alembic; print(alembic.__version__)&#34;</code></pre>
+    <p>If this prints a version number, installation succeeded. If you see a <code>ModuleNotFoundError</code>, see the errors section below.</p>
+  </section>
+
+  <!-- Installation errors -->
+  <section>
+    <h2>Installation Errors</h2>
+    <p>Common errors when installing <code>alembic</code> with pip.</p>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;alembic&#39;</h3>
+      <p><strong>Cause:</strong> The package is not installed in the current Python environment.</p>
+      <p><strong>Fix:</strong> Run <code>pip install alembic</code>. If using a virtual environment, ensure it is activated first.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;alembic&#39; (installed but still failing)</h3>
+      <p><strong>Cause:</strong> pip installed the package into a different Python than the one running your script.</p>
+      <p><strong>Fix:</strong> Use <code>python -m pip install alembic</code> to install into the interpreter you are running.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ImportError: cannot import name &#39;X&#39; from &#39;alembic&#39;</h3>
+      <p><strong>Cause:</strong> The function or class does not exist in the installed version.</p>
+      <p><strong>Fix:</strong> Check the version with <code>pip show alembic</code> and upgrade with <code>pip install --upgrade alembic</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">pip: command not found</h3>
+      <p><strong>Cause:</strong> pip is not in PATH or Python was not added to PATH during installation.</p>
+      <p><strong>Fix:</strong> Try <code>python -m pip install alembic</code>. On macOS/Linux try <code>pip3</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">PermissionError: [Errno 13] Permission denied</h3>
+      <p><strong>Cause:</strong> No write access to the system Python package directory.</p>
+      <p><strong>Fix:</strong> Use a virtual environment, or add <code>--user</code>: <code>pip install --user alembic</code></p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">SSL: CERTIFICATE_VERIFY_FAILED</h3>
+      <p><strong>Cause:</strong> pip cannot verify PyPI&#39;s SSL certificate — common behind corporate proxies.</p>
+      <p><strong>Fix:</strong> Try: <code>pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org alembic</code></p>
+    </div>
+    
+  </section>
+
+  <!-- Runtime errors (package-specific) -->
+  
+
+  <!-- Recent releases -->
+  
+  <section>
+    <h2>Recent Releases</h2>
+    <table class="releases-table">
+      <thead>
+        <tr><th>Version</th><th>Released</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr class="current-release">
+          <td><code>1.18.4</code> <span class="badge badge-cat">latest</span></td>
+          <td>2026-02-10</td>
+        </tr>
+        
+        <tr>
+          <td><code>1.18.3</code></td>
+          <td>2026-01-29</td>
+        </tr>
+        
+        <tr>
+          <td><code>1.18.2</code></td>
+          <td>2026-01-28</td>
+        </tr>
+        
+        <tr>
+          <td><code>1.18.1</code></td>
+          <td>2026-01-14</td>
+        </tr>
+        
+        <tr>
+          <td><code>1.18.0</code></td>
+          <td>2026-01-09</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <p class="meta-small"><a href="https://pypi.org/project/alembic/#history" rel="nofollow" target="_blank">Full release history on PyPI &rarr;</a></p>
+  </section>
+  
+
+  <!-- Upgrade / uninstall -->
+  <section>
+    <h2>Manage alembic</h2>
+
+    <h3>Upgrade to latest version</h3>
+    <pre><code>pip install --upgrade alembic</code></pre>
+
+    <h3>Install a specific version</h3>
+    <pre><code>pip install alembic==1.18.4</code></pre>
+
+    <h3>Uninstall</h3>
+    <pre><code>pip uninstall alembic</code></pre>
+
+    <h3>Check what is installed</h3>
+    <pre><code>pip show alembic</code></pre>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: 2026-04-12 &bull; Data from <a href="https://pypi.org/project/alembic/" rel="nofollow" target="_blank">PyPI</a></p>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- AdSense sidebar unit -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Deploy Python Apps</h3>
+        <ul class="resource-list">
+          <li><a href="https://m.do.co/c/XXXXXXXXXX" rel="nofollow sponsored" target="_blank">DigitalOcean — $200 free credit</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

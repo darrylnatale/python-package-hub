@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Python Package Hub — Install Any Python Package</title>
+<meta name="description" content="Installation guides and error fixes for 227+ Python packages. Find pip install commands, virtual environment setup, and common error solutions.">
+<link rel="canonical" href="https://pip.dev-guides.com/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Python Package Hub",
+  "url": "https://pip.dev-guides.com",
+  "description": "Installation guides and error fixes for Python packages.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://pip.dev-guides.com/{search_term_string}/",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <!-- Cloudflare Web Analytics — replace TOKEN with your token -->
+  <!--
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TOKEN"}'></script>
+  -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+
+    <div class="content">
+      
+
+<div class="hero">
+  <h1>Python Package Hub</h1>
+  <p class="hero-sub">Installation guides and error fixes for 227+ Python packages.</p>
+  <p>Find the right <code>pip install</code> command and fix common import errors — fast.</p>
+</div>
+
+<!-- AdSense unit -->
+<!--
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="XXXXXXXXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+-->
+
+<section>
+  <h2>Popular Packages</h2>
+  <div class="package-grid">
+    
+    <a href="/aiofiles/" class="package-card">
+      <div class="package-card-name">aiofiles</div>
+      
+      <div class="package-card-summary">File support for asyncio.</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/aiohttp/" class="package-card">
+      <div class="package-card-name">aiohttp</div>
+      
+      <div class="package-card-summary">Async http client/server framework (asyncio)</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/aiosignal/" class="package-card">
+      <div class="package-card-name">aiosignal</div>
+      
+      <div class="package-card-summary">aiosignal: a list of registered asynchronous callbacks</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/alembic/" class="package-card">
+      <div class="package-card-name">alembic</div>
+      
+      <div class="package-card-summary">A database migration tool for SQLAlchemy.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/altair/" class="package-card">
+      <div class="package-card-name">altair</div>
+      
+      <div class="package-card-summary">Vega-Altair: A declarative statistical visualization library for Python.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/ansible/" class="package-card">
+      <div class="package-card-name">ansible</div>
+      
+      <div class="package-card-summary">Radically simple IT automation</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/anthropic/" class="package-card">
+      <div class="package-card-name">anthropic</div>
+      
+      <div class="package-card-summary">The official Python library for the anthropic API</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/anyio/" class="package-card">
+      <div class="package-card-name">anyio</div>
+      
+      <div class="package-card-summary">High-level concurrency and networking framework on top of asyncio or Trio</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/apache-airflow/" class="package-card">
+      <div class="package-card-name">apache-airflow</div>
+      
+      <div class="package-card-summary">Programmatically author, schedule and monitor data pipelines</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/apscheduler/" class="package-card">
+      <div class="package-card-name">APScheduler</div>
+      
+      <div class="package-card-summary">In-process task scheduler with Cron-like capabilities</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/arch/" class="package-card">
+      <div class="package-card-name">arch</div>
+      
+      <div class="package-card-summary">ARCH for Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/arrow/" class="package-card">
+      <div class="package-card-name">arrow</div>
+      
+      <div class="package-card-summary">Better dates &amp; times for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/async-timeout/" class="package-card">
+      <div class="package-card-name">async-timeout</div>
+      
+      <div class="package-card-summary">Timeout context manager for asyncio programs</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/asyncpg/" class="package-card">
+      <div class="package-card-name">asyncpg</div>
+      
+      <div class="package-card-summary">An asyncio PostgreSQL driver</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/attrs/" class="package-card">
+      <div class="package-card-name">attrs</div>
+      
+      <div class="package-card-summary">Classes Without Boilerplate</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/azure-identity/" class="package-card">
+      <div class="package-card-name">azure-identity</div>
+      
+      <div class="package-card-summary">Microsoft Azure Identity Library for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/azure-storage-blob/" class="package-card">
+      <div class="package-card-name">azure-storage-blob</div>
+      
+      <div class="package-card-summary">Microsoft Azure Blob Storage Client Library for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/babel/" class="package-card">
+      <div class="package-card-name">babel</div>
+      
+      <div class="package-card-summary">Internationalization utilities</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/backoff/" class="package-card">
+      <div class="package-card-name">backoff</div>
+      
+      <div class="package-card-summary">Function decoration for backoff and retry</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/barcode/" class="package-card">
+      <div class="package-card-name">barcode</div>
+      
+      <div class="package-card-summary">Design and test NGS barcodes.</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/beautifulsoup4/" class="package-card">
+      <div class="package-card-name">beautifulsoup4</div>
+      
+      <div class="package-card-summary">Screen-scraping library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/black/" class="package-card">
+      <div class="package-card-name">black</div>
+      
+      <div class="package-card-summary">The uncompromising code formatter.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/bokeh/" class="package-card">
+      <div class="package-card-name">bokeh</div>
+      
+      <div class="package-card-summary">Interactive plots and applications in the browser from Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/boto/" class="package-card">
+      <div class="package-card-name">boto</div>
+      
+      <div class="package-card-summary">Amazon Web Services Library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/boto3/" class="package-card">
+      <div class="package-card-name">boto3</div>
+      
+      <div class="package-card-summary">The AWS SDK for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/botocore/" class="package-card">
+      <div class="package-card-name">botocore</div>
+      
+      <div class="package-card-summary">Low-level, data-driven core of boto 3.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/cachetools/" class="package-card">
+      <div class="package-card-name">cachetools</div>
+      
+      <div class="package-card-summary">Extensible memoizing collections and decorators</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/catboost/" class="package-card">
+      <div class="package-card-name">catboost</div>
+      
+      <div class="package-card-summary">CatBoost Python Package</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/celery/" class="package-card">
+      <div class="package-card-name">celery</div>
+      
+      <div class="package-card-summary">Distributed Task Queue.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/certifi/" class="package-card">
+      <div class="package-card-name">certifi</div>
+      
+      <div class="package-card-summary">Python package for providing Mozilla&#39;s CA Bundle.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/cffi/" class="package-card">
+      <div class="package-card-name">cffi</div>
+      
+      <div class="package-card-summary">Foreign Function Interface for Python calling C code.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/charset-normalizer/" class="package-card">
+      <div class="package-card-name">charset-normalizer</div>
+      
+      <div class="package-card-summary">The Real First Universal Charset Detector. Open, modern and actively maintained …</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/chromadb/" class="package-card">
+      <div class="package-card-name">chromadb</div>
+      
+      <div class="package-card-summary">Chroma.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/click/" class="package-card">
+      <div class="package-card-name">click</div>
+      
+      <div class="package-card-summary">Composable command line interface toolkit</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/clipboard/" class="package-card">
+      <div class="package-card-name">clipboard</div>
+      
+      <div class="package-card-summary">A cross platform clipboard operation library of Python. Works for Windows, Mac a…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/colorama/" class="package-card">
+      <div class="package-card-name">colorama</div>
+      
+      <div class="package-card-summary">Cross-platform colored terminal text.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/coverage/" class="package-card">
+      <div class="package-card-name">coverage</div>
+      
+      <div class="package-card-summary">Code coverage measurement for Python</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/cryptography/" class="package-card">
+      <div class="package-card-name">cryptography</div>
+      
+      <div class="package-card-summary">cryptography is a package which provides cryptographic recipes and primitives to…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/ctypes/" class="package-card">
+      <div class="package-card-name">ctypes</div>
+      
+      <div class="package-card-summary">create and manipulate C data types in Python, call functions in shared libraries</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/cython/" class="package-card">
+      <div class="package-card-name">Cython</div>
+      
+      <div class="package-card-summary">The Cython compiler for writing C extensions in the Python language.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/dagster/" class="package-card">
+      <div class="package-card-name">dagster</div>
+      
+      <div class="package-card-summary">Dagster is an orchestration platform for the development, production, and observ…</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/dash/" class="package-card">
+      <div class="package-card-name">dash</div>
+      
+      <div class="package-card-summary">A Python framework for building reactive web-apps. Developed by Plotly.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/dask/" class="package-card">
+      <div class="package-card-name">dask</div>
+      
+      <div class="package-card-summary">Parallel PyData with Task Scheduling</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/dataset/" class="package-card">
+      <div class="package-card-name">dataset</div>
+      
+      <div class="package-card-summary">Toolkit for Python-based database access.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/docker/" class="package-card">
+      <div class="package-card-name">docker</div>
+      
+      <div class="package-card-summary">A Python library for the Docker Engine API.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/duckdb/" class="package-card">
+      <div class="package-card-name">duckdb</div>
+      
+      <div class="package-card-summary">DuckDB in-process database</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/elasticsearch/" class="package-card">
+      <div class="package-card-name">elasticsearch</div>
+      
+      <div class="package-card-summary">Python client for Elasticsearch</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/fabric/" class="package-card">
+      <div class="package-card-name">fabric</div>
+      
+      <div class="package-card-summary">High level SSH command execution</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/faiss-cpu/" class="package-card">
+      <div class="package-card-name">faiss-cpu</div>
+      
+      <div class="package-card-summary">A library for efficient similarity search and clustering of dense vectors.</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/faker/" class="package-card">
+      <div class="package-card-name">Faker</div>
+      
+      <div class="package-card-summary">Faker is a Python package that generates fake data for you.</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/fastapi/" class="package-card">
+      <div class="package-card-name">fastapi</div>
+      
+      <div class="package-card-summary">FastAPI framework, high performance, easy to learn, fast to code, ready for prod…</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/filelock/" class="package-card">
+      <div class="package-card-name">filelock</div>
+      
+      <div class="package-card-summary">A platform independent file lock.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/fiona/" class="package-card">
+      <div class="package-card-name">fiona</div>
+      
+      <div class="package-card-summary">Fiona reads and writes spatial data files</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/flake8/" class="package-card">
+      <div class="package-card-name">flake8</div>
+      
+      <div class="package-card-summary">the modular source code checker: pep8 pyflakes and co</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/flask/" class="package-card">
+      <div class="package-card-name">Flask</div>
+      
+      <div class="package-card-summary">A simple framework for building complex web applications.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/folium/" class="package-card">
+      <div class="package-card-name">folium</div>
+      
+      <div class="package-card-summary">Make beautiful maps with Leaflet.js &amp; Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/freezegun/" class="package-card">
+      <div class="package-card-name">freezegun</div>
+      
+      <div class="package-card-summary">Let your Python tests travel through time</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/frozenlist/" class="package-card">
+      <div class="package-card-name">frozenlist</div>
+      
+      <div class="package-card-summary">A list-like structure which implements collections.abc.MutableSequence</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/gensim/" class="package-card">
+      <div class="package-card-name">gensim</div>
+      
+      <div class="package-card-summary">Python framework for fast Vector Space Modelling</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/geopandas/" class="package-card">
+      <div class="package-card-name">geopandas</div>
+      
+      <div class="package-card-summary">Geographic pandas extensions</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/geopy/" class="package-card">
+      <div class="package-card-name">geopy</div>
+      
+      <div class="package-card-summary">Python Geocoding Toolbox</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/google-api-core/" class="package-card">
+      <div class="package-card-name">google-api-core</div>
+      
+      <div class="package-card-summary">Google API client core library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/google-auth/" class="package-card">
+      <div class="package-card-name">google-auth</div>
+      
+      <div class="package-card-summary">Google Authentication Library</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/google-cloud-bigquery/" class="package-card">
+      <div class="package-card-name">google-cloud-bigquery</div>
+      
+      <div class="package-card-summary">Google BigQuery API client library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/google-cloud-pubsub/" class="package-card">
+      <div class="package-card-name">google-cloud-pubsub</div>
+      
+      <div class="package-card-summary">Google Cloud Pub/Sub API client library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/google-cloud-storage/" class="package-card">
+      <div class="package-card-name">google-cloud-storage</div>
+      
+      <div class="package-card-summary">Google Cloud Storage API client library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/gradio/" class="package-card">
+      <div class="package-card-name">gradio</div>
+      
+      <div class="package-card-summary">Python library for easily interacting with trained machine learning models</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/great-expectations/" class="package-card">
+      <div class="package-card-name">great-expectations</div>
+      
+      <div class="package-card-summary">Always know what to expect from your data.</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/grpcio/" class="package-card">
+      <div class="package-card-name">grpcio</div>
+      
+      <div class="package-card-summary">HTTP/2-based RPC framework</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/h11/" class="package-card">
+      <div class="package-card-name">h11</div>
+      
+      <div class="package-card-summary">A pure-Python, bring-your-own-I/O implementation of HTTP/1.1</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/httpcore/" class="package-card">
+      <div class="package-card-name">httpcore</div>
+      
+      <div class="package-card-summary">A minimal low-level HTTP client.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/httpretty/" class="package-card">
+      <div class="package-card-name">httpretty</div>
+      
+      <div class="package-card-summary">HTTP client mock for Python</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/httpx/" class="package-card">
+      <div class="package-card-name">httpx</div>
+      
+      <div class="package-card-summary">The next generation HTTP client.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/huggingface-hub/" class="package-card">
+      <div class="package-card-name">huggingface-hub</div>
+      
+      <div class="package-card-summary">Client library to download and publish models, datasets and other repos on the h…</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/humanize/" class="package-card">
+      <div class="package-card-name">humanize</div>
+      
+      <div class="package-card-summary">Python humanize utilities</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/hyperopt/" class="package-card">
+      <div class="package-card-name">hyperopt</div>
+      
+      <div class="package-card-summary">Distributed Asynchronous Hyperparameter Optimization</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/hypothesis/" class="package-card">
+      <div class="package-card-name">hypothesis</div>
+      
+      <div class="package-card-summary">The property-based testing library for Python</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/idna/" class="package-card">
+      <div class="package-card-name">idna</div>
+      
+      <div class="package-card-summary">Internationalized Domain Names in Applications (IDNA)</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/imageio/" class="package-card">
+      <div class="package-card-name">ImageIO</div>
+      
+      <div class="package-card-summary">Read and write images and video across all major formats. Supports scientific an…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/invoke/" class="package-card">
+      <div class="package-card-name">invoke</div>
+      
+      <div class="package-card-summary">Pythonic task execution</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/isort/" class="package-card">
+      <div class="package-card-name">isort</div>
+      
+      <div class="package-card-summary">A Python utility / library to sort Python imports.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/itsdangerous/" class="package-card">
+      <div class="package-card-name">itsdangerous</div>
+      
+      <div class="package-card-summary">Safely pass data to untrusted environments and back.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/jinja2/" class="package-card">
+      <div class="package-card-name">Jinja2</div>
+      
+      <div class="package-card-summary">A very fast and expressive template engine.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/joblib/" class="package-card">
+      <div class="package-card-name">joblib</div>
+      
+      <div class="package-card-summary">Lightweight pipelining with Python functions</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/keyboard/" class="package-card">
+      <div class="package-card-name">keyboard</div>
+      
+      <div class="package-card-summary">Hook and simulate keyboard events on Windows and Linux</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/kivy/" class="package-card">
+      <div class="package-card-name">Kivy</div>
+      
+      <div class="package-card-summary">An open-source Python framework for developing GUI apps that work cross-platform…</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/kombu/" class="package-card">
+      <div class="package-card-name">kombu</div>
+      
+      <div class="package-card-summary">Messaging library for Python.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/kubernetes/" class="package-card">
+      <div class="package-card-name">kubernetes</div>
+      
+      <div class="package-card-summary">Kubernetes python client</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/langchain/" class="package-card">
+      <div class="package-card-name">langchain</div>
+      
+      <div class="package-card-summary">Building applications with LLMs through composability</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/lightgbm/" class="package-card">
+      <div class="package-card-name">lightgbm</div>
+      
+      <div class="package-card-summary">LightGBM Python-package</div>
+      
+      <div class="package-card-cat">Machine Learning &amp; AI</div>
+    </a>
+    
+    <a href="/loguru/" class="package-card">
+      <div class="package-card-name">loguru</div>
+      
+      <div class="package-card-summary">Python logging made (stupidly) simple</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/lxml/" class="package-card">
+      <div class="package-card-name">lxml</div>
+      
+      <div class="package-card-summary">Powerful and Pythonic XML processing library combining libxml2/libxslt with the …</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/mahotas/" class="package-card">
+      <div class="package-card-name">mahotas</div>
+      
+      <div class="package-card-summary">Mahotas: Computer Vision Library</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/markupsafe/" class="package-card">
+      <div class="package-card-name">MarkupSafe</div>
+      
+      <div class="package-card-summary">Safely add untrusted strings to HTML/XML markup.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/matplotlib/" class="package-card">
+      <div class="package-card-name">matplotlib</div>
+      
+      <div class="package-card-summary">Python plotting package</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/mlflow/" class="package-card">
+      <div class="package-card-name">mlflow</div>
+      
+      <div class="package-card-summary">MLflow is an open source platform for the complete machine learning lifecycle</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/mock/" class="package-card">
+      <div class="package-card-name">mock</div>
+      
+      <div class="package-card-summary">Rolling backport of unittest.mock for all Pythons</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/moto/" class="package-card">
+      <div class="package-card-name">moto</div>
+      
+      <div class="package-card-summary">A library that allows you to easily mock out tests based on AWS infrastructure</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/motor/" class="package-card">
+      <div class="package-card-name">motor</div>
+      
+      <div class="package-card-summary">Non-blocking MongoDB driver for Tornado or asyncio</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/mouse/" class="package-card">
+      <div class="package-card-name">mouse</div>
+      
+      <div class="package-card-summary">Hook and simulate mouse events on Windows and Linux</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/msrest/" class="package-card">
+      <div class="package-card-name">msrest</div>
+      
+      <div class="package-card-summary">AutoRest swagger generator Python client runtime.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/multidict/" class="package-card">
+      <div class="package-card-name">multidict</div>
+      
+      <div class="package-card-summary">multidict implementation</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/mypy/" class="package-card">
+      <div class="package-card-name">mypy</div>
+      
+      <div class="package-card-summary">Optional static typing for Python</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/networkx/" class="package-card">
+      <div class="package-card-name">networkx</div>
+      
+      <div class="package-card-summary">Python package for creating and manipulating graphs and networks</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/nltk/" class="package-card">
+      <div class="package-card-name">nltk</div>
+      
+      <div class="package-card-summary">Natural Language Toolkit</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/nox/" class="package-card">
+      <div class="package-card-name">nox</div>
+      
+      <div class="package-card-summary">Flexible test automation.</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/numba/" class="package-card">
+      <div class="package-card-name">numba</div>
+      
+      <div class="package-card-summary">compiling Python code using LLVM</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/numpy/" class="package-card">
+      <div class="package-card-name">numpy</div>
+      
+      <div class="package-card-summary">Fundamental package for array computing in Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/openai/" class="package-card">
+      <div class="package-card-name">openai</div>
+      
+      <div class="package-card-summary">The official Python library for the openai API</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/opencv-python/" class="package-card">
+      <div class="package-card-name">opencv-python</div>
+      
+      <div class="package-card-summary">Wrapper package for OpenCV python bindings.</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/openpyxl/" class="package-card">
+      <div class="package-card-name">openpyxl</div>
+      
+      <div class="package-card-summary">A Python library to read/write Excel 2010 xlsx/xlsm files</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/opensearch-py/" class="package-card">
+      <div class="package-card-name">opensearch-py</div>
+      
+      <div class="package-card-summary">Python client for OpenSearch</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/optuna/" class="package-card">
+      <div class="package-card-name">optuna</div>
+      
+      <div class="package-card-summary">A hyperparameter optimization framework</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/packaging/" class="package-card">
+      <div class="package-card-name">packaging</div>
+      
+      <div class="package-card-summary">Core utilities for Python packages</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pandas/" class="package-card">
+      <div class="package-card-name">pandas</div>
+      
+      <div class="package-card-summary">Powerful data structures for data analysis, time series, and statistics</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/panel/" class="package-card">
+      <div class="package-card-name">panel</div>
+      
+      <div class="package-card-summary">The powerful data exploration &amp; web app framework for Python.</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/parameterized/" class="package-card">
+      <div class="package-card-name">parameterized</div>
+      
+      <div class="package-card-summary">Parameterized testing with any Python test framework</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/paramiko/" class="package-card">
+      <div class="package-card-name">paramiko</div>
+      
+      <div class="package-card-summary">SSH2 protocol library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/peewee/" class="package-card">
+      <div class="package-card-name">peewee</div>
+      
+      <div class="package-card-summary">a little orm</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pendulum/" class="package-card">
+      <div class="package-card-name">pendulum</div>
+      
+      <div class="package-card-summary">Python datetimes made easy</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pexpect/" class="package-card">
+      <div class="package-card-name">pexpect</div>
+      
+      <div class="package-card-summary">Pexpect allows easy control of interactive console applications.</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pillow/" class="package-card">
+      <div class="package-card-name">pillow</div>
+      
+      <div class="package-card-summary">Python Imaging Library (fork)</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pip/" class="package-card">
+      <div class="package-card-name">pip</div>
+      
+      <div class="package-card-summary">The PyPA recommended tool for installing Python packages.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/playsound/" class="package-card">
+      <div class="package-card-name">playsound</div>
+      
+      <div class="package-card-summary">Pure Python, cross platform, single function module with no dependencies for pla…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/playwright/" class="package-card">
+      <div class="package-card-name">playwright</div>
+      
+      <div class="package-card-summary">A high-level API to automate web browsers</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/plotly/" class="package-card">
+      <div class="package-card-name">plotly</div>
+      
+      <div class="package-card-summary">An open-source interactive data visualization library for Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/polars/" class="package-card">
+      <div class="package-card-name">polars</div>
+      
+      <div class="package-card-summary">Blazingly fast DataFrame library</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/prefect/" class="package-card">
+      <div class="package-card-name">prefect</div>
+      
+      <div class="package-card-summary">Workflow orchestration and management.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/prophet/" class="package-card">
+      <div class="package-card-name">prophet</div>
+      
+      <div class="package-card-summary">Automatic Forecasting Procedure</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/protobuf/" class="package-card">
+      <div class="package-card-name">protobuf</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/psutil/" class="package-card">
+      <div class="package-card-name">psutil</div>
+      
+      <div class="package-card-summary">Cross-platform lib for process and system monitoring.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/psycopg2-binary/" class="package-card">
+      <div class="package-card-name">psycopg2-binary</div>
+      
+      <div class="package-card-summary">psycopg2 - Python-PostgreSQL Database Adapter</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/ptyprocess/" class="package-card">
+      <div class="package-card-name">ptyprocess</div>
+      
+      <div class="package-card-summary">Run a subprocess in a pseudo terminal</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/py-cpuinfo/" class="package-card">
+      <div class="package-card-name">py-cpuinfo</div>
+      
+      <div class="package-card-summary">Get CPU info with pure Python</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pyarrow/" class="package-card">
+      <div class="package-card-name">pyarrow</div>
+      
+      <div class="package-card-summary">Python library for Apache Arrow</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyasn1-modules/" class="package-card">
+      <div class="package-card-name">pyasn1-modules</div>
+      
+      <div class="package-card-summary">A collection of ASN.1-based protocols modules</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pyasn1/" class="package-card">
+      <div class="package-card-name">pyasn1</div>
+      
+      <div class="package-card-summary">Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pyaudio/" class="package-card">
+      <div class="package-card-name">PyAudio</div>
+      
+      <div class="package-card-summary">Cross-platform audio I/O with PortAudio</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyautogui/" class="package-card">
+      <div class="package-card-name">PyAutoGUI</div>
+      
+      <div class="package-card-summary">PyAutoGUI lets Python control the mouse and keyboard, and other GUI automation t…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pycparser/" class="package-card">
+      <div class="package-card-name">pycparser</div>
+      
+      <div class="package-card-summary">C parser in Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pydantic-settings/" class="package-card">
+      <div class="package-card-name">pydantic-settings</div>
+      
+      <div class="package-card-summary">Settings management using Pydantic</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pydantic/" class="package-card">
+      <div class="package-card-name">pydantic</div>
+      
+      <div class="package-card-summary">Data validation using Python type hints</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pygame/" class="package-card">
+      <div class="package-card-name">pygame</div>
+      
+      <div class="package-card-summary">Python Game Development</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pygetwindow/" class="package-card">
+      <div class="package-card-name">PyGetWindow</div>
+      
+      <div class="package-card-summary">A simple, cross-platform module for obtaining GUI information on application&#39;s w…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyglet/" class="package-card">
+      <div class="package-card-name">pyglet</div>
+      
+      <div class="package-card-summary">pyglet is a cross-platform games and multimedia package.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pylint/" class="package-card">
+      <div class="package-card-name">pylint</div>
+      
+      <div class="package-card-summary">python code static checker</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pymongo/" class="package-card">
+      <div class="package-card-name">pymongo</div>
+      
+      <div class="package-card-summary">PyMongo - the Official MongoDB Python driver</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pymupdf/" class="package-card">
+      <div class="package-card-name">PyMuPDF</div>
+      
+      <div class="package-card-summary">A high performance Python library for data extraction, analysis, conversion &amp; ma…</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pynput/" class="package-card">
+      <div class="package-card-name">pynput</div>
+      
+      <div class="package-card-summary">Monitor and control user input devices</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pypdf2/" class="package-card">
+      <div class="package-card-name">PyPDF2</div>
+      
+      <div class="package-card-summary">A pure-python PDF library capable of splitting, merging, cropping, and transform…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyperclip/" class="package-card">
+      <div class="package-card-name">pyperclip</div>
+      
+      <div class="package-card-summary">A cross-platform clipboard module for Python. (Only handles plain text for now.)</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyproj/" class="package-card">
+      <div class="package-card-name">pyproj</div>
+      
+      <div class="package-card-summary">Python interface to PROJ (cartographic projections and coordinate transformation…</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/pyqt5/" class="package-card">
+      <div class="package-card-name">PyQt5</div>
+      
+      <div class="package-card-summary">Python bindings for the Qt cross platform application toolkit</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyqt6/" class="package-card">
+      <div class="package-card-name">PyQt6</div>
+      
+      <div class="package-card-summary">Python bindings for the Qt cross platform application toolkit</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyside6/" class="package-card">
+      <div class="package-card-name">PySide6</div>
+      
+      <div class="package-card-summary">Python bindings for the Qt cross-platform application and UI framework</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pyspark/" class="package-card">
+      <div class="package-card-name">pyspark</div>
+      
+      <div class="package-card-summary">Apache Spark Python API</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pytablewriter/" class="package-card">
+      <div class="package-card-name">pytablewriter</div>
+      
+      <div class="package-card-summary">pytablewriter is a Python library to write a table in various formats: AsciiDoc …</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pytesseract/" class="package-card">
+      <div class="package-card-name">pytesseract</div>
+      
+      <div class="package-card-summary">Python-tesseract is a python wrapper for Google&#39;s Tesseract-OCR</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pytest-asyncio/" class="package-card">
+      <div class="package-card-name">pytest-asyncio</div>
+      
+      <div class="package-card-summary">Pytest support for asyncio</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pytest-cov/" class="package-card">
+      <div class="package-card-name">pytest-cov</div>
+      
+      <div class="package-card-summary">Pytest plugin for measuring coverage.</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pytest-mock/" class="package-card">
+      <div class="package-card-name">pytest-mock</div>
+      
+      <div class="package-card-summary">Thin-wrapper around the mock package for easier use with pytest</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pytest-xdist/" class="package-card">
+      <div class="package-card-name">pytest-xdist</div>
+      
+      <div class="package-card-summary">pytest xdist plugin for distributed testing, most importantly across multiple CP…</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/pytest/" class="package-card">
+      <div class="package-card-name">pytest</div>
+      
+      <div class="package-card-summary">pytest: simple powerful testing with Python</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/python-barcode/" class="package-card">
+      <div class="package-card-name">python-barcode</div>
+      
+      <div class="package-card-summary">Create standard barcodes with Python. No external modules needed. (optional Pill…</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/python-dateutil/" class="package-card">
+      <div class="package-card-name">python-dateutil</div>
+      
+      <div class="package-card-summary">Extensions to the standard Python datetime module</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/python-docx/" class="package-card">
+      <div class="package-card-name">python-docx</div>
+      
+      <div class="package-card-summary">Create, read, and update Microsoft Word .docx files.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/python-dotenv/" class="package-card">
+      <div class="package-card-name">python-dotenv</div>
+      
+      <div class="package-card-summary">Read key-value pairs from a .env file and set them as environment variables</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/pytz/" class="package-card">
+      <div class="package-card-name">pytz</div>
+      
+      <div class="package-card-summary">World timezone definitions, modern and historical</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pywin32/" class="package-card">
+      <div class="package-card-name">pywin32</div>
+      
+      <div class="package-card-summary">Python for Window Extensions</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyyaml/" class="package-card">
+      <div class="package-card-name">PyYAML</div>
+      
+      <div class="package-card-summary">YAML parser and emitter for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/pyzbar/" class="package-card">
+      <div class="package-card-name">pyzbar</div>
+      
+      <div class="package-card-summary">Read one-dimensional barcodes and QR codes from Python 2 and 3.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/qrcode/" class="package-card">
+      <div class="package-card-name">qrcode</div>
+      
+      <div class="package-card-summary">QR Code image generator</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/rasterio/" class="package-card">
+      <div class="package-card-name">rasterio</div>
+      
+      <div class="package-card-summary">Fast and direct raster I/O for use with NumPy</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/ray/" class="package-card">
+      <div class="package-card-name">ray</div>
+      
+      <div class="package-card-summary">Ray provides a simple, universal API for building distributed applications.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/redis/" class="package-card">
+      <div class="package-card-name">redis</div>
+      
+      <div class="package-card-summary">Python client for Redis database and key-value store</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/reportlab/" class="package-card">
+      <div class="package-card-name">reportlab</div>
+      
+      <div class="package-card-summary">The Reportlab Toolkit</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/requests/" class="package-card">
+      <div class="package-card-name">requests</div>
+      
+      <div class="package-card-summary">Python HTTP for Humans.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/responses/" class="package-card">
+      <div class="package-card-name">responses</div>
+      
+      <div class="package-card-summary">A utility library for mocking out the `requests` Python library.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/retry/" class="package-card">
+      <div class="package-card-name">retry</div>
+      
+      <div class="package-card-summary">Easy to use retry decorator.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/rich/" class="package-card">
+      <div class="package-card-name">rich</div>
+      
+      <div class="package-card-summary">Render rich text, tables, progress bars, syntax highlighting, markdown and more …</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/rsa/" class="package-card">
+      <div class="package-card-name">rsa</div>
+      
+      <div class="package-card-summary">Pure-Python RSA implementation</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/s3transfer/" class="package-card">
+      <div class="package-card-name">s3transfer</div>
+      
+      <div class="package-card-summary">An Amazon S3 Transfer Manager</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/schedule/" class="package-card">
+      <div class="package-card-name">schedule</div>
+      
+      <div class="package-card-summary">Job scheduling for humans.</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/scikit-image/" class="package-card">
+      <div class="package-card-name">scikit-image</div>
+      
+      <div class="package-card-summary">Image processing in Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/scikit-learn/" class="package-card">
+      <div class="package-card-name">scikit-learn</div>
+      
+      <div class="package-card-summary">A set of python modules for machine learning and data mining</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/scipy/" class="package-card">
+      <div class="package-card-name">scipy</div>
+      
+      <div class="package-card-summary">Fundamental algorithms for scientific computing in Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/scrapy/" class="package-card">
+      <div class="package-card-name">Scrapy</div>
+      
+      <div class="package-card-summary">A high-level Web Crawling and Web Scraping framework</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/seaborn/" class="package-card">
+      <div class="package-card-name">seaborn</div>
+      
+      <div class="package-card-summary">Statistical data visualization</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/selenium/" class="package-card">
+      <div class="package-card-name">selenium</div>
+      
+      <div class="package-card-summary">Official Python bindings for Selenium WebDriver</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/sendgrid/" class="package-card">
+      <div class="package-card-name">sendgrid</div>
+      
+      <div class="package-card-summary">Twilio SendGrid library for Python</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/sentence-transformers/" class="package-card">
+      <div class="package-card-name">sentence-transformers</div>
+      
+      <div class="package-card-summary">Embeddings, Retrieval, and Reranking</div>
+      
+      <div class="package-card-cat">Machine Learning &amp; AI</div>
+    </a>
+    
+    <a href="/setuptools/" class="package-card">
+      <div class="package-card-name">setuptools</div>
+      
+      <div class="package-card-summary">Most extensible Python build backend with support for C/C++ extension modules</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/shapely/" class="package-card">
+      <div class="package-card-name">shapely</div>
+      
+      <div class="package-card-summary">Manipulation and analysis of geometric objects</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/six/" class="package-card">
+      <div class="package-card-name">six</div>
+      
+      <div class="package-card-summary">Python 2 and 3 compatibility utilities</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/snowflake-connector-python/" class="package-card">
+      <div class="package-card-name">snowflake-connector-python</div>
+      
+      <div class="package-card-summary">Snowflake Connector for Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/spacy/" class="package-card">
+      <div class="package-card-name">spacy</div>
+      
+      <div class="package-card-summary">Industrial-strength Natural Language Processing (NLP) in Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/sqlalchemy/" class="package-card">
+      <div class="package-card-name">SQLAlchemy</div>
+      
+      <div class="package-card-summary">Database Abstraction Library</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/sqlite-utils/" class="package-card">
+      <div class="package-card-name">sqlite-utils</div>
+      
+      <div class="package-card-summary">CLI tool and Python library for manipulating SQLite databases</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/starlette/" class="package-card">
+      <div class="package-card-name">starlette</div>
+      
+      <div class="package-card-summary">The little ASGI library that shines.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/statsmodels/" class="package-card">
+      <div class="package-card-name">statsmodels</div>
+      
+      <div class="package-card-summary">Statistical computations and models for Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/streamlit/" class="package-card">
+      <div class="package-card-name">streamlit</div>
+      
+      <div class="package-card-summary">A faster way to build and share data apps</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/stripe/" class="package-card">
+      <div class="package-card-name">stripe</div>
+      
+      <div class="package-card-summary">Python bindings for the Stripe API</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/sympy/" class="package-card">
+      <div class="package-card-name">sympy</div>
+      
+      <div class="package-card-summary">Computer algebra system (CAS) in Python</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/tabulate/" class="package-card">
+      <div class="package-card-name">tabulate</div>
+      
+      <div class="package-card-summary">Pretty-print tabular data</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/tenacity/" class="package-card">
+      <div class="package-card-name">tenacity</div>
+      
+      <div class="package-card-summary">Retry code until it succeeds</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/textblob/" class="package-card">
+      <div class="package-card-name">textblob</div>
+      
+      <div class="package-card-summary">Simple, Pythonic text processing. Sentiment analysis, part-of-speech tagging, no…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/threadpoolctl/" class="package-card">
+      <div class="package-card-name">threadpoolctl</div>
+      
+      <div class="package-card-summary">threadpoolctl</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/tiktoken/" class="package-card">
+      <div class="package-card-name">tiktoken</div>
+      
+      <div class="package-card-summary">tiktoken is a fast BPE tokeniser for use with OpenAI&#39;s models</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/tokenizers/" class="package-card">
+      <div class="package-card-name">tokenizers</div>
+      
+      <div class="package-card-cat">Data &amp; Science</div>
+    </a>
+    
+    <a href="/torch/" class="package-card">
+      <div class="package-card-name">torch</div>
+      
+      <div class="package-card-summary">Tensors and Dynamic neural networks in Python with strong GPU acceleration</div>
+      
+      <div class="package-card-cat">Machine Learning &amp; AI</div>
+    </a>
+    
+    <a href="/tortoise-orm/" class="package-card">
+      <div class="package-card-name">tortoise-orm</div>
+      
+      <div class="package-card-summary">Easy async ORM for python, built with relations in mind</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/tox/" class="package-card">
+      <div class="package-card-name">tox</div>
+      
+      <div class="package-card-summary">tox is a generic virtualenv management and test command line tool</div>
+      
+      <div class="package-card-cat">Testing &amp; QA</div>
+    </a>
+    
+    <a href="/tqdm/" class="package-card">
+      <div class="package-card-name">tqdm</div>
+      
+      <div class="package-card-summary">Fast, Extensible Progress Meter</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/transformers/" class="package-card">
+      <div class="package-card-name">transformers</div>
+      
+      <div class="package-card-summary">Transformers: the model-definition framework for state-of-the-art machine learni…</div>
+      
+      <div class="package-card-cat">Machine Learning &amp; AI</div>
+    </a>
+    
+    <a href="/twilio/" class="package-card">
+      <div class="package-card-name">twilio</div>
+      
+      <div class="package-card-summary">Twilio API client and TwiML generator</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/typer/" class="package-card">
+      <div class="package-card-name">typer</div>
+      
+      <div class="package-card-summary">Typer, build great CLIs. Easy to code. Based on Python type hints.</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/typing-extensions/" class="package-card">
+      <div class="package-card-name">typing-extensions</div>
+      
+      <div class="package-card-summary">Backported and Experimental Type Hints for Python 3.9+</div>
+      
+      <div class="package-card-cat">CLI &amp; Utilities</div>
+    </a>
+    
+    <a href="/urllib3/" class="package-card">
+      <div class="package-card-name">urllib3</div>
+      
+      <div class="package-card-summary">HTTP library with thread-safe connection pooling, file post, and more.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/uvicorn/" class="package-card">
+      <div class="package-card-name">uvicorn</div>
+      
+      <div class="package-card-summary">The lightning-fast ASGI server.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/websockets/" class="package-card">
+      <div class="package-card-name">websockets</div>
+      
+      <div class="package-card-summary">An implementation of the WebSocket Protocol (RFC 6455 &amp; 7692)</div>
+      
+      <div class="package-card-cat">Async &amp; Networking</div>
+    </a>
+    
+    <a href="/werkzeug/" class="package-card">
+      <div class="package-card-name">Werkzeug</div>
+      
+      <div class="package-card-summary">The comprehensive WSGI web application library.</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/wordcloud/" class="package-card">
+      <div class="package-card-name">wordcloud</div>
+      
+      <div class="package-card-summary">A little word cloud generator</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/wxpython/" class="package-card">
+      <div class="package-card-name">wxPython</div>
+      
+      <div class="package-card-summary">Cross platform GUI toolkit for Python, &#34;Phoenix&#34; version</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/xgboost/" class="package-card">
+      <div class="package-card-name">xgboost</div>
+      
+      <div class="package-card-summary">XGBoost Python Package</div>
+      
+      <div class="package-card-cat">Machine Learning &amp; AI</div>
+    </a>
+    
+    <a href="/xlrd/" class="package-card">
+      <div class="package-card-name">xlrd</div>
+      
+      <div class="package-card-summary">Library for developers to extract data from Microsoft Excel (tm) .xls spreadshee…</div>
+      
+      <div class="package-card-cat">General Purpose</div>
+    </a>
+    
+    <a href="/xlwt/" class="package-card">
+      <div class="package-card-name">xlwt</div>
+      
+      <div class="package-card-summary">Library to create spreadsheet files compatible with MS Excel 97/2000/XP/2003 XLS…</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+    <a href="/yarl/" class="package-card">
+      <div class="package-card-name">yarl</div>
+      
+      <div class="package-card-summary">Yet another URL library</div>
+      
+      <div class="package-card-cat">Web &amp; HTTP</div>
+    </a>
+    
+  </div>
+</section>
+
+<section class="about-section">
+  <h2>About Python Package Hub</h2>
+  <p>Python Package Hub provides clear, up-to-date installation guides for Python packages. Every page covers:</p>
+  <ul>
+    <li>pip, conda, and poetry install commands</li>
+    <li>Virtual environment setup</li>
+    <li>How to verify the installation</li>
+    <li>Fixes for the most common errors</li>
+  </ul>
+  <p>Package data is sourced directly from <a href="https://pypi.org" rel="nofollow">PyPI</a>.</p>
+</section>
+
+
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- AdSense sidebar unit -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Deploy Python Apps</h3>
+        <ul class="resource-list">
+          <li><a href="https://m.do.co/c/XXXXXXXXXX" rel="nofollow sponsored" target="_blank">DigitalOcean — $200 free credit</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

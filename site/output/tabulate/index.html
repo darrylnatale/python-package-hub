@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>How to Install tabulate in Python — Guide &amp; Error Fixes | Python Package Hub</title>
+<meta name="description" content="Complete guide to installing the tabulate Python package. Includes pip commands, virtual environment setup, code examples, and fixes for common tabulate errors.">
+<link rel="canonical" href="https://pip.dev-guides.com/tabulate/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Install tabulate in Python",
+  "description": "Step-by-step guide to install the tabulate Python package.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Install with pip",
+      "text": "Run pip install tabulate in your terminal."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify installation",
+      "text": "Run python -c \"import tabulate\" to confirm the package installed."
+    }
+  ]
+}
+</script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <!-- Cloudflare Web Analytics — replace TOKEN with your token -->
+  <!--
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TOKEN"}'></script>
+  -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+
+    <div class="content">
+      
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>tabulate</span>
+</nav>
+
+<article class="package-page">
+
+  <div class="package-header">
+    <h1>How to Install <code>tabulate</code> in Python</h1>
+    <div class="package-meta">
+      <span class="badge">v0.10.0</span>
+      <span class="badge badge-cat">CLI &amp; Utilities</span>
+      <span class="badge">Python &gt;=3.10</span>
+      
+    </div>
+    <p class="summary">Pretty-print tabular data</p>
+  </div>
+
+  <div class="install-quick">
+    <span class="install-label">Install</span>
+    <code class="install-cmd">pip install tabulate</code>
+  </div>
+
+  <!-- AdSense inline unit -->
+  <!--
+  <ins class="adsbygoogle" style="display:block;text-align:center;"
+       data-ad-layout="in-article" data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+
+  <!-- What is this package -->
+  <section>
+    <h2>What is tabulate?</h2>
+    <p>Pretty-print tabular data</p>
+    
+    <p>Pretty-print tabular data in Python, a library and a command-line
+utility.
+
+The main use cases of the library are:
+
+- printing small tables without hassle: just one function call,
+ formatting is guided by the data itself
+- authoring tabular data for lightweight plain-text markup: multiple
+ output formats suitable for further editing or transformation
+- readable presentation of mixed textual and numeric data: smart
+ column alignment, configurable number formatting, alignment by a
+ decimal point
+
+Installation</p>
+    
+    <p>To install the Python library and the command line utility, run:
+
+
+
+The command line utility will be installed as to on
+Linux (e.g. ); or as to in your
+Python installation on Windows (e.g. ).
+
+You may consider installing the library only for the current user:
+
+
+
+In this case the command line utility will be installed to
+ on Linux and to
+ on Windows.
+
+To install just the library on Unix-like operating systems:
+
+
+
+On Windows:
+
+
+
+Build status</p>
+    
+    <p>The module provides just one function, , which takes a list of
+lists or another tabular data type as the first argument, and outputs a
+nicely formatted plain-text table:
+
+
+
+The following tabular data types are supported:
+
+- list of lists or another iterable of iterables
+- list or another iterable of dicts (keys as columns)
+- dict of iterables (keys as columns)
+- list of dataclasses (field names as columns)
+- two-dimensional NumPy array
+- NumPy record arrays (names as columns)
+- pandas.DataFrame
+
+Tabulate is a Python3 library.
+
+Headers
+
+The second optional argument named defines a list of column
+headers to be used:
+
+
+
+If , then the first row of data is used:
+
+
+
+If , then the keys of a dictionary/dataframe, or column
+indices are used. It also works for NumPy record arrays and lists of
+dictionaries or named tuples:
+
+
+
+When data is a list of dictionaries, a dictionary can be passed as 
+to replace the keys with other column labels:
+
+
+
+Row Indices
+
+By default, only pandas.DataFrame tables have an additional column
+called row index. To add a similar column to any other type of table,
+pass or argument to .
+To suppress row indices for all types of data, pass 
+or . To add a custom row index column, pass
+, where is some iterable:
+
+
+
+Table format
+
+There is more than one way to format a table in plain text. The third
+optional argument named defines how the table is formatted.
+
+Supported table formats are:
+
+- &#34;plain&#34;
+- &#34;simple&#34;
+- &#34;github&#34;
+- &#34;grid&#34;
+- &#34;simple\grid&#34;
+- &#34;rounded\grid&#34;
+- &#34;heavy\grid&#34;
+- &#34;mixed\grid&#34;
+- &#34;double\grid&#34;
+- &#34;fancy\grid&#34;
+- &#34;outline&#34;
+- &#34;simple\outline&#34;
+- &#34;rounded\outline&#34;
+- &#34;heavy\outline&#34;
+- &#34;mixed\outline&#34;
+- &#34;double\outline&#34;
+- &#34;fancy\outline&#34;
+- &#34;pipe&#34;
+- &#34;orgtbl&#34;
+- &#34;asciidoc&#34;
+- &#34;jira&#34;
+- &#34;presto&#34;
+- &#34;pretty&#34;
+- &#34;psql&#34;
+- &#34;rst&#34;
+- &#34;mediawiki&#34;
+- &#34;moinmoin&#34;
+- &#34;youtrack&#34;
+- &#34;html&#34;
+- &#34;unsafehtml&#34;
+- &#34;latex&#34;
+- &#34;latex\raw&#34;
+- &#34;latex\booktabs&#34;
+- &#34;latex\longtable&#34;
+- &#34;textile&#34;
+- &#34;tsv&#34;
+
+ tables do not use any pseudo-graphics to draw lines:
+
+
+
+ is the default format (the default may change in future
+versions). It corresponds to in Pandoc Markdown
+extensions:
+
+
+
+ follows the conventions of GitHub flavored Markdown. It
+corresponds to the format without alignment colons:
+
+
+
+ is like tables formatted by Emacs&#39;
+table.el package. It corresponds to
+ in Pandoc Markdown extensions:
+
+
+
+ draws a grid using single-line box-drawing characters:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;simplegrid&#34;))
+ ┌────────┬───────┐
+ │ item │ qty │
+ ├────────┼───────┤
+ │ spam │ 42 │
+ ├────────┼───────┤
+ │ eggs │ 451 │
+ ├────────┼───────┤
+ │ bacon │ 0 │
+ └────────┴───────┘
+
+ draws a grid using single-line box-drawing characters with rounded corners:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;roundedgrid&#34;))
+ ╭────────┬───────╮
+ │ item │ qty │
+ ├────────┼───────┤
+ │ spam │ 42 │
+ ├────────┼───────┤
+ │ eggs │ 451 │
+ ├────────┼───────┤
+ │ bacon │ 0 │
+ ╰────────┴───────╯
+
+ draws a grid using bold (thick) single-line box-drawing characters:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;heavygrid&#34;))
+ ┏━━━━━━━━┳━━━━━━━┓
+ ┃ item ┃ qty ┃
+ ┣━━━━━━━━╋━━━━━━━┫
+ ┃ spam ┃ 42 ┃
+ ┣━━━━━━━━╋━━━━━━━┫
+ ┃ eggs ┃ 451 ┃
+ ┣━━━━━━━━╋━━━━━━━┫
+ ┃ bacon ┃ 0 ┃
+ ┗━━━━━━━━┻━━━━━━━┛
+
+ draws a grid using a mix of light (thin) and heavy (thick) lines box-drawing characters:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;mixedgrid&#34;))
+ ┍━━━━━━━━┯━━━━━━━┑
+ │ item │ qty │
+ ┝━━━━━━━━┿━━━━━━━┥
+ │ spam │ 42 │
+ ├────────┼───────┤
+ │ eggs │ 451 │
+ ├────────┼───────┤
+ │ bacon │ 0 │
+ ┕━━━━━━━━┷━━━━━━━┙
+
+ draws a grid using double-line box-drawing characters:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;doublegrid&#34;))
+ ╔════════╦═══════╗
+ ║ item ║ qty ║
+ ╠════════╬═══════╣
+ ║ spam ║ 42 ║
+ ╠════════╬═══════╣
+ ║ eggs ║ 451 ║
+ ╠════════╬═══════╣
+ ║ bacon ║ 0 ║
+ ╚════════╩═══════╝
+
+ draws a grid using a mix of single and
+ double-line box-drawing characters:
+
+
+
+ is similar to but uses colons only to define
+columnwise content alignment , without whitespace padding,
+similar the alignment specification of Pandoc :
+
+ &gt;&gt;&gt; print(tabulate([[&#34;spam&#34;, 41.9999], [&#34;eggs&#34;, &#34;451.0&#34;]],
+ ... [&#34;strings&#34;, &#34;numbers&#34;], &#34;colongrid&#34;,
+ ... colalign=[&#34;right&#34;, &#34;left&#34;]))
+ +-----------+-----------+
+ | strings | numbers |
+ +==========:+:==========+
+ | spam | 41.9999 |
+ +-----------+-----------+
+ | eggs | 451 |
+ +-----------+-----------+
+
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;outline&#34;))
+ +--------+-------+
+ | item | qty |
+ +========+=======+
+ | spam | 42 |
+ | eggs | 451 |
+ | bacon | 0 |
+ +--------+-------+
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;simpleoutline&#34;))
+ ┌────────┬───────┐
+ │ item │ qty │
+ ├────────┼───────┤
+ │ spam │ 42 │
+ │ eggs │ 451 │
+ │ bacon │ 0 │
+ └────────┴───────┘
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;roundedoutline&#34;))
+ ╭────────┬───────╮
+ │ item │ qty │
+ ├────────┼───────┤
+ │ spam │ 42 │
+ │ eggs │ 451 │
+ │ bacon │ 0 │
+ ╰────────┴───────╯
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;heavyoutline&#34;))
+ ┏━━━━━━━━┳━━━━━━━┓
+ ┃ item ┃ qty ┃
+ ┣━━━━━━━━╋━━━━━━━┫
+ ┃ spam ┃ 42 ┃
+ ┃ eggs ┃ 451 ┃
+ ┃ bacon ┃ 0 ┃
+ ┗━━━━━━━━┻━━━━━━━┛
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;mixedoutline&#34;))
+ ┍━━━━━━━━┯━━━━━━━┑
+ │ item │ qty │
+ ┝━━━━━━━━┿━━━━━━━┥
+ │ spam │ 42 │
+ │ eggs │ 451 │
+ │ bacon │ 0 │
+ ┕━━━━━━━━┷━━━━━━━┙
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;doubleoutline&#34;))
+ ╔════════╦═══════╗
+ ║ item ║ qty ║
+ ╠════════╬═══════╣
+ ║ spam ║ 42 ║
+ ║ eggs ║ 451 ║
+ ║ bacon ║ 0 ║
+ ╚════════╩═══════╝
+
+ is the same as the format but doesn&#39;t draw lines between rows:
+
+ &gt;&gt;&gt; print(tabulate(table, headers, tablefmt=&#34;fancyoutline&#34;))
+ ╒════════╤═══════╕
+ │ item │ qty │
+ ╞════════╪═══════╡
+ │ spam │ 42 │
+ │ eggs │ 451 │
+ │ bacon │ 0 │
+ ╘════════╧═══════╛
+
+ is like tables formatted by Presto cli:
+
+
+
+ attempts to be close to the format emitted by the PrettyTables
+library:
+
+
+
+ is like tables formatted by Postgres&#39; psql cli:
+
+
+
+ follows the conventions of PHP Markdown
+Extra extension.
+It corresponds to in Pandoc. This format uses colons to
+indicate column alignment:
+
+
+
+ formats data like a simple table of the
+AsciiDoctor
+format:
+
+
+
+ follows the conventions of Emacs
+org-mode, and is editable also
+in the minor orgtbl-mode. Hence its name:
+
+
+
+ follows the conventions of Atlassian Jira markup language:
+
+
+
+ formats data like a simple table of the
+reStructuredText
+format:
+
+
+
+ format produces a table markup used in
+Wikipedia and on other
+MediaWiki-based sites:
+
+ 
+
+ format produces a table markup used in
+MoinMoin wikis:
+
+
+
+ format produces a table markup used in Youtrack tickets:
+
+
+
+ format produces a table markup used in
+Textile format:
+
+
+
+ produces standard HTML markup as an html.escape&#39;d str
+with a .reprhtml method so that Jupyter Lab and Notebook display the HTML
+and a .str property so that the raw HTML remains accessible.
+ table format can be used if an unescaped HTML is required:
+
+
+
+ format creates a environment for LaTeX markup,
+replacing special characters like `\` to their LaTeX
+correspondents:
+
+
+
+ behaves like but does not escape LaTeX commands and
+special characters.
+
+ creates a environment for LaTeX markup using
+spacing and style from the package.
+
+ creates a table that can stretch along multiple pages,
+using the package.
+
+Column alignment
+
+ is smart about column alignment. It detects columns which
+contain only numbers, and aligns them by a decimal point (or flushes
+them to the right if they appear to be integers). Text columns are
+flushed to the left.
+
+You can override the default alignment with and 
+named arguments. Possible column alignments are: , ,
+, (only for numbers), and (to disable alignment).
+
+Aligning by a decimal point works best when you need to compare numbers
+at a glance:
+
+
+
+Compare this with a more common right alignment:
+
+
+
+For , anything which can be parsed as a number is a number.
+Even numbers represented as strings are aligned properly. This feature
+comes in handy when reading a mixed table of text and numbers from a
+file:
+
+
+
+To disable this feature use .
+
+
+
+Custom column alignment
+
+ allows a custom column alignment to override the smart alignment described above.
+Use to define a global setting. Possible alignments are: , , , (only for numbers).
+Furthermore, you can define for column-specific alignment as a list or a tuple. Possible values are (keeps global setting), , , , (only for numbers), (to disable alignment). Missing alignments are treated as .
+
+
+
+Custom header alignment
+
+Headers&#39; alignment can be defined separately from columns&#39;. Like for columns, you can use:
+- to define a header-specific global alignment setting. Possible values are , , , (to follow column alignment),
+- list or tuple to further specify header-wise alignment. Possible values are (keeps global setting), (follow column alignment), , , , (to disable alignment). Missing alignments are treated as .
+
+
+
+Number formatting
+
+ allows to define custom number formatting applied to all
+columns of decimal numbers. Use named argument:
+
+
+
+ argument can be a list or a tuple of format strings, one per
+column, in which case every column may have different number formatting:
+
+
+
+ works similarly for integers
+
+ &gt;&gt;&gt; print(tabulate([[&#34;a&#34;,1000],[&#34;b&#34;,90000]], intfmt=&#34;,&#34;))
+ - ------
+ a 1,000
+ b 90,000
+ - ------
+
+
+Type Deduction and Missing Values
+
+When sees numerical data (with our without comma separators), it
+attempts to align the column on the decimal point. However, if it observes
+non-numerical data in the column, it aligns it to the left by default. If
+data is missing in a column (either None or empty values), the remaining
+data in the column is used to infer the type:
+
+
+
+The deduced type (eg. str, float) influences the rendering of any types
+that have alternative representations. For example, since has
+methods and defined (and hence is convertible to a
+ and also has a representation), the appropriate
+representation is selected for the column&#39;s deduced type. In order to not
+lose precision accidentally, types having both an and
+ representation will be considered a .
+
+Therefore, if your table contains types convertible to int/float but you&#39;d
+prefer they be represented as strings, or your strings might all look
+like numbers such as &#34;1e23&#34;: either convert them to the desired
+representation before you , or ensure that the column always
+contains at least one other .
+
+Text formatting
+
+By default, removes leading and trailing whitespace from text
+columns. To disable whitespace removal, pass .
+Older versions of the library used a global module-level flag PRESERVEWHITESPACE.
+
+Wide (fullwidth CJK) symbols
+
+To properly align tables which contain wide characters (typically
+fullwidth glyphs from Chinese, Japanese or Korean languages), the user
+should install library. To install it together with
+:
+
+
+
+Wide character support is enabled automatically if library is
+already installed. To disable wide characters support without
+uninstalling , set the global module-level flag
+:
+
+
+
+Multiline cells
+
+Most table formats support multiline cell text (text containing newline
+characters). The newline characters are honored as line break
+characters.
+
+Multiline cells are supported for data rows and for header rows.
+
+Further automatic line breaks are not inserted. Of course, some output
+formats such as latex or html handle automatic formatting of the cell
+content on their own, but for those that don&#39;t, the newline characters
+in the input cell text are the only means to break a line in cell text.
+
+Note that some output formats (e.g. simple, or plain) do not represent
+row delimiters, so that the representation of multiline cells in such
+formats may be ambiguous to the reader.
+
+The following examples of formatted output use the following table with
+a multiline cell, and headers with a multiline cell:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+ tables:
+
+
+
+Multiline cells are not well-supported for the other table formats.
+
+Automating Multilines
+While tabulate supports data passed in with multilines entries explicitly provided,
+it also provides some support to help manage this work internally.
+
+The argument is a list where each entry specifies the max width for
+it&#39;s respective column. Any cell that will exceed this will automatically wrap the content.
+To assign the same max width for all columns, a singular int scaler can be used.
+
+Use for any columns where an explicit maximum does not need to be provided,
+and thus no automate multiline wrapping will take place.
+
+The wrapping uses the python standard textwrap.wrap
+function with default parameters - aside from width.
+
+This example demonstrates usage of automatic multiline wrapping, though typically
+the lines being wrapped would probably be significantly longer than this.
+
+
+
+Text is preferably wrapped on whitespaces and right after the hyphens in hyphenated words.
+
+breaklongwords (default: True) If true, then words longer than width will be broken in order to ensure that no lines are longer than width.
+If it is false, long words will not be broken, and some lines may be longer than width.
+(Long words will be put on a line by themselves, in order to minimize the amount by which width is exceeded.)
+
+breakonhyphens (default: True) If true, wrapping will occur preferably on whitespaces and right after hyphens in compound words, as it is customary in English.
+If false, only whitespaces will be considered as potentially good places for line breaks.
+
+
+
+Adding Separating lines
+One might want to add one or more separating lines to highlight different sections in a table.
+
+The separating lines will be of the same type as the one defined by the specified formatter as either the
+linebetweenrows, linebelowheader, linebelow, lineabove or just a simple empty line when none is defined for the formatter
+
+
+ &gt;&gt;&gt; from tabulate import tabulate, SEPARATINGLINE
+
+ table = [[&#34;Earth&#34;,6371],
+ [&#34;Mars&#34;,3390],
+ SEPARATINGLINE,
+ [&#34;Moon&#34;,1737]]
+ print(tabulate(table, tablefmt=&#34;simple&#34;))
+ ----- ----
+ Earth 6371
+ Mars 3390
+ ----- ----
+ Moon 1737
+ ----- ----
+
+ANSI support
+ANSI escape codes are non-printable byte sequences usually used for terminal operations like setting
+color output or modifying cursor positions. Because multi-byte ANSI sequences are inherently non-printable,
+they can still introduce unwanted extra length to strings. For example:
+
+ &gt;&gt;&gt; len(&#39;\033[31mthis text is red\033[0m&#39;) # printable length is 16
+ 25
+
+To deal with this, string lengths are calculated after first removing all ANSI escape sequences. This ensures
+that the actual printable length is used for column widths, rather than the byte length. In the final, printable
+table, however, ANSI escape sequences are not removed so the original styling is preserved.
+
+Some terminals support a special grouping of ANSI escape sequences that are intended to display hyperlinks
+much in the same way they are shown in browsers. These are handled just as mentioned before: non-printable
+ANSI escape sequences are removed prior to string length calculation. The only difference with escaped
+hyperlinks is that column width will be based on the length of the URL text rather than the URL
+itself (terminals would show this text). For example:
+
+ &gt;&gt;&gt; len(&#39;\x1b]8;; # display length is 7, showing &#39;example&#39;
+ 40
+
+
+Usage of the command line utility</p>
+    
+    <div class="pkg-links">
+      
+      <a href="https://pypi.org/project/tabulate/" rel="nofollow" target="_blank">PyPI page &rarr;</a>
+      <span class="meta-small">Author: Sergey Astanin &lt;s.astanin@gmail.com&gt;</span>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  
+  <section>
+    <h2>Quick Start</h2>
+    <p>Minimal example to get started with <code>tabulate</code>:</p>
+    <pre><code>from tabulate import tabulate
+
+data = [[&#34;Alice&#34;, 30, &#34;Engineer&#34;], [&#34;Bob&#34;, 25, &#34;Designer&#34;]]
+headers = [&#34;Name&#34;, &#34;Age&#34;, &#34;Role&#34;]
+print(tabulate(data, headers=headers, tablefmt=&#34;grid&#34;))</code></pre>
+  </section>
+  
+
+  <!-- Installation -->
+  <section>
+    <h2>Installation</h2>
+
+    <h3>pip (standard)</h3>
+    <pre><code>pip install tabulate</code></pre>
+
+    <h3>Virtual environment (recommended)</h3>
+    <pre><code>python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install tabulate</code></pre>
+
+    <h3>pip3</h3>
+    <pre><code>pip3 install tabulate</code></pre>
+
+    <h3>conda</h3>
+    <pre><code>conda install -c conda-forge tabulate</code></pre>
+
+    <h3>Poetry</h3>
+    <pre><code>poetry add tabulate</code></pre>
+  </section>
+
+  <!-- Dependencies -->
+  
+
+  <!-- Verify -->
+  <section>
+    <h2>Verify the Installation</h2>
+    <p>After installing, confirm the package is available:</p>
+    <pre><code>python -c &#34;import tabulate; print(tabulate.__version__)&#34;</code></pre>
+    <p>If this prints a version number, installation succeeded. If you see a <code>ModuleNotFoundError</code>, see the errors section below.</p>
+  </section>
+
+  <!-- Installation errors -->
+  <section>
+    <h2>Installation Errors</h2>
+    <p>Common errors when installing <code>tabulate</code> with pip.</p>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;tabulate&#39;</h3>
+      <p><strong>Cause:</strong> The package is not installed in the current Python environment.</p>
+      <p><strong>Fix:</strong> Run <code>pip install tabulate</code>. If using a virtual environment, ensure it is activated first.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;tabulate&#39; (installed but still failing)</h3>
+      <p><strong>Cause:</strong> pip installed the package into a different Python than the one running your script.</p>
+      <p><strong>Fix:</strong> Use <code>python -m pip install tabulate</code> to install into the interpreter you are running.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ImportError: cannot import name &#39;X&#39; from &#39;tabulate&#39;</h3>
+      <p><strong>Cause:</strong> The function or class does not exist in the installed version.</p>
+      <p><strong>Fix:</strong> Check the version with <code>pip show tabulate</code> and upgrade with <code>pip install --upgrade tabulate</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">pip: command not found</h3>
+      <p><strong>Cause:</strong> pip is not in PATH or Python was not added to PATH during installation.</p>
+      <p><strong>Fix:</strong> Try <code>python -m pip install tabulate</code>. On macOS/Linux try <code>pip3</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">PermissionError: [Errno 13] Permission denied</h3>
+      <p><strong>Cause:</strong> No write access to the system Python package directory.</p>
+      <p><strong>Fix:</strong> Use a virtual environment, or add <code>--user</code>: <code>pip install --user tabulate</code></p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">SSL: CERTIFICATE_VERIFY_FAILED</h3>
+      <p><strong>Cause:</strong> pip cannot verify PyPI&#39;s SSL certificate — common behind corporate proxies.</p>
+      <p><strong>Fix:</strong> Try: <code>pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org tabulate</code></p>
+    </div>
+    
+  </section>
+
+  <!-- Runtime errors (package-specific) -->
+  
+
+  <!-- Recent releases -->
+  
+  <section>
+    <h2>Recent Releases</h2>
+    <table class="releases-table">
+      <thead>
+        <tr><th>Version</th><th>Released</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr class="current-release">
+          <td><code>0.10.0</code> <span class="badge badge-cat">latest</span></td>
+          <td>2026-03-04</td>
+        </tr>
+        
+        <tr>
+          <td><code>0.9.0</code></td>
+          <td>2022-10-06</td>
+        </tr>
+        
+        <tr>
+          <td><code>0.8.10</code></td>
+          <td>2022-06-21</td>
+        </tr>
+        
+        <tr>
+          <td><code>0.8.9</code></td>
+          <td>2021-02-22</td>
+        </tr>
+        
+        <tr>
+          <td><code>0.8.8</code></td>
+          <td>2021-02-18</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <p class="meta-small"><a href="https://pypi.org/project/tabulate/#history" rel="nofollow" target="_blank">Full release history on PyPI &rarr;</a></p>
+  </section>
+  
+
+  <!-- Upgrade / uninstall -->
+  <section>
+    <h2>Manage tabulate</h2>
+
+    <h3>Upgrade to latest version</h3>
+    <pre><code>pip install --upgrade tabulate</code></pre>
+
+    <h3>Install a specific version</h3>
+    <pre><code>pip install tabulate==0.10.0</code></pre>
+
+    <h3>Uninstall</h3>
+    <pre><code>pip uninstall tabulate</code></pre>
+
+    <h3>Check what is installed</h3>
+    <pre><code>pip show tabulate</code></pre>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: 2026-04-12 &bull; Data from <a href="https://pypi.org/project/tabulate/" rel="nofollow" target="_blank">PyPI</a></p>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- AdSense sidebar unit -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Deploy Python Apps</h3>
+        <ul class="resource-list">
+          <li><a href="https://m.do.co/c/XXXXXXXXXX" rel="nofollow sponsored" target="_blank">DigitalOcean — $200 free credit</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

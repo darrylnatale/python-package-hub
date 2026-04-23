@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pip install qrcode pillow — Why Both Are Needed | Python Package Hub</title>
+  <meta name="description" content="Why pip install qrcode requires Pillow and the correct install command using the qrcode[pil] extra.">
+  <link rel="canonical" href="https://pip.dev-guides.com/qrcode/pip-install-qrcode-pillow/">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav><a href="/">Home</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+    <div class="content">
+
+      <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <a href="/qrcode/">qrcode</a> &rsaquo; <span>pip install qrcode pillow</span>
+      </nav>
+
+      <article class="package-page">
+
+        <div class="package-header">
+          <h1>pip install qrcode pillow</h1>
+        </div>
+
+        <section>
+          <h2>Correct install</h2>
+          <pre><code>pip install "qrcode[pil]"</code></pre>
+          <p>The <code>[pil]</code> extra declares Pillow as a dependency — one command installs both.</p>
+        </section>
+
+        <section>
+          <h2>Error without Pillow</h2>
+          <pre><code>qrcode.exceptions.ModuleNotFoundError: No module named 'PIL'</code></pre>
+          <p>Pillow is required for PNG and image-format output. Plain <code>pip install qrcode</code> omits it.</p>
+        </section>
+
+        <section>
+          <h2>Verify</h2>
+          <pre><code>python -c "import qrcode; import PIL; print('ok')"</code></pre>
+        </section>
+
+        <section>
+          <h2>Related</h2>
+          <ul>
+            <li><a href="/qrcode/no-module-named-qrcode/">ModuleNotFoundError: No module named 'qrcode'</a></li>
+            <li><a href="/qrcode/install-7-4-2/">pip install qrcode 7.4.2</a></li>
+            <li><a href="/qrcode/">qrcode package overview</a></li>
+          </ul>
+        </section>
+
+        <div class="page-meta">
+          <p>Last updated: 2026-04-23 &bull; Data from <a href="https://pypi.org/project/qrcode/" rel="nofollow" target="_blank">PyPI</a></p>
+        </div>
+
+      </article>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

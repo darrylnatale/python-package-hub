@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>How to Install SQLAlchemy in Python — Guide &amp; Error Fixes | Python Package Hub</title>
+<meta name="description" content="Complete guide to installing the SQLAlchemy Python package. Includes pip commands, virtual environment setup, code examples, and fixes for common SQLAlchemy errors.">
+<link rel="canonical" href="https://pip.dev-guides.com/sqlalchemy/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Install SQLAlchemy in Python",
+  "description": "Step-by-step guide to install the SQLAlchemy Python package.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Install with pip",
+      "text": "Run pip install SQLAlchemy in your terminal."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify installation",
+      "text": "Run python -c \"import sqlalchemy\" to confirm the package installed."
+    }
+  ]
+}
+</script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <!-- Cloudflare Web Analytics — replace TOKEN with your token -->
+  <!--
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TOKEN"}'></script>
+  -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+
+    <div class="content">
+      
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>SQLAlchemy</span>
+</nav>
+
+<article class="package-page">
+
+  <div class="package-header">
+    <h1>How to Install <code>SQLAlchemy</code> in Python</h1>
+    <div class="package-meta">
+      <span class="badge">v2.0.49</span>
+      <span class="badge badge-cat">General Purpose</span>
+      <span class="badge">Python &gt;=3.7</span>
+      <span class="badge">MIT</span>
+    </div>
+    <p class="summary">Database Abstraction Library</p>
+  </div>
+
+  <div class="install-quick">
+    <span class="install-label">Install</span>
+    <code class="install-cmd">pip install SQLAlchemy</code>
+  </div>
+
+  <!-- AdSense inline unit -->
+  <!--
+  <ins class="adsbygoogle" style="display:block;text-align:center;"
+       data-ad-layout="in-article" data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+
+  <!-- What is this package -->
+  <section>
+    <h2>What is SQLAlchemy?</h2>
+    <p>Database Abstraction Library</p>
+    
+    <p>The Python SQL Toolkit and Object Relational Mapper</p>
+    
+    <p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper
+that gives application developers the full power and
+flexibility of SQL. SQLAlchemy provides a full suite
+of well known enterprise-level persistence patterns,
+designed for efficient and high-performing database
+access, adapted into a simple and Pythonic domain
+language.</p>
+    
+    <p>An industrial strength ORM, built
+ from the core on the identity map, unit of work,
+ and data mapper patterns. These patterns
+ allow transparent persistence of objects
+ using a declarative configuration system.
+ Domain models
+ can be constructed and manipulated naturally,
+ and changes are synchronized with the
+ current transaction automatically.
+ A relationally-oriented query system, exposing
+ the full range of SQL&#39;s capabilities
+ explicitly, including joins, subqueries,
+ correlation, and most everything else,
+ in terms of the object model.
+ Writing queries with the ORM uses the same
+ techniques of relational composition you use
+ when writing SQL. While you can drop into
+ literal SQL at any time, it&#39;s virtually never
+ needed.
+ A comprehensive and flexible system
+ of eager loading for related collections and objects.
+ Collections are cached within a session,
+ and can be loaded on individual access, all
+ at once using joins, or by query per collection
+ across the full result set.
+ A Core SQL construction system and DBAPI
+ interaction layer. The SQLAlchemy Core is
+ separate from the ORM and is a full database
+ abstraction layer in its own right, and includes
+ an extensible Python-based SQL expression
+ language, schema metadata, connection pooling,
+ type coercion, and custom types.
+ All primary and foreign key constraints are
+ assumed to be composite and natural. Surrogate
+ integer primary keys are of course still the
+ norm, but SQLAlchemy never assumes or hardcodes
+ to this model.
+ Database introspection and generation. Database
+ schemas can be &#34;reflected&#34; in one step into
+ Python structures representing database metadata;
+ those same structures can then generate
+ CREATE statements right back out - all within
+ the Core, independent of the ORM.</p>
+    
+    <div class="pkg-links">
+      
+      <a href="https://www.sqlalchemy.org" rel="nofollow" target="_blank">Documentation &rarr;</a>
+      
+      <a href="https://pypi.org/project/SQLAlchemy/" rel="nofollow" target="_blank">PyPI page &rarr;</a>
+      <span class="meta-small">Author: Mike Bayer</span>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  
+  <section>
+    <h2>Quick Start</h2>
+    <p>Minimal example to get started with <code>SQLAlchemy</code>:</p>
+    <pre><code>from sqlalchemy import create_engine, text
+
+engine = create_engine(&#34;sqlite:///example.db&#34;)
+
+with engine.connect() as conn:
+    conn.execute(text(&#34;CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)&#34;))
+    conn.execute(text(&#34;INSERT INTO users (name) VALUES (&#39;Alice&#39;)&#34;))
+    conn.commit()
+    rows = conn.execute(text(&#34;SELECT * FROM users&#34;)).fetchall()
+    print(rows)  # [(1, &#39;Alice&#39;)]</code></pre>
+  </section>
+  
+
+  <!-- Installation -->
+  <section>
+    <h2>Installation</h2>
+
+    <h3>pip (standard)</h3>
+    <pre><code>pip install SQLAlchemy</code></pre>
+
+    <h3>Virtual environment (recommended)</h3>
+    <pre><code>python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install SQLAlchemy</code></pre>
+
+    <h3>pip3</h3>
+    <pre><code>pip3 install SQLAlchemy</code></pre>
+
+    <h3>conda</h3>
+    <pre><code>conda install -c conda-forge SQLAlchemy</code></pre>
+
+    <h3>Poetry</h3>
+    <pre><code>poetry add SQLAlchemy</code></pre>
+  </section>
+
+  <!-- Dependencies -->
+  
+  <section>
+    <h2>Dependencies</h2>
+    <p>Installing <code>SQLAlchemy</code> will also install these packages:</p>
+    <div class="dep-list">
+      
+      <a href="/importlib-metadata/" class="dep-tag">importlib-metadata</a>
+      
+      <a href="/greenlet/" class="dep-tag">greenlet</a>
+      
+      <a href="/typing-extensions/" class="dep-tag">typing-extensions</a>
+      
+    </div>
+  </section>
+  
+
+  <!-- Verify -->
+  <section>
+    <h2>Verify the Installation</h2>
+    <p>After installing, confirm the package is available:</p>
+    <pre><code>python -c &#34;import sqlalchemy; print(sqlalchemy.__version__)&#34;</code></pre>
+    <p>If this prints a version number, installation succeeded. If you see a <code>ModuleNotFoundError</code>, see the errors section below.</p>
+  </section>
+
+  <!-- Installation errors -->
+  <section>
+    <h2>Installation Errors</h2>
+    <p>Common errors when installing <code>SQLAlchemy</code> with pip.</p>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;sqlalchemy&#39;</h3>
+      <p><strong>Cause:</strong> The package is not installed in the current Python environment.</p>
+      <p><strong>Fix:</strong> Run <code>pip install SQLAlchemy</code>. If using a virtual environment, ensure it is activated first.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;sqlalchemy&#39; (installed but still failing)</h3>
+      <p><strong>Cause:</strong> pip installed the package into a different Python than the one running your script.</p>
+      <p><strong>Fix:</strong> Use <code>python -m pip install SQLAlchemy</code> to install into the interpreter you are running.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ImportError: cannot import name &#39;X&#39; from &#39;sqlalchemy&#39;</h3>
+      <p><strong>Cause:</strong> The function or class does not exist in the installed version.</p>
+      <p><strong>Fix:</strong> Check the version with <code>pip show SQLAlchemy</code> and upgrade with <code>pip install --upgrade SQLAlchemy</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">pip: command not found</h3>
+      <p><strong>Cause:</strong> pip is not in PATH or Python was not added to PATH during installation.</p>
+      <p><strong>Fix:</strong> Try <code>python -m pip install SQLAlchemy</code>. On macOS/Linux try <code>pip3</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">PermissionError: [Errno 13] Permission denied</h3>
+      <p><strong>Cause:</strong> No write access to the system Python package directory.</p>
+      <p><strong>Fix:</strong> Use a virtual environment, or add <code>--user</code>: <code>pip install --user SQLAlchemy</code></p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">SSL: CERTIFICATE_VERIFY_FAILED</h3>
+      <p><strong>Cause:</strong> pip cannot verify PyPI&#39;s SSL certificate — common behind corporate proxies.</p>
+      <p><strong>Fix:</strong> Try: <code>pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org SQLAlchemy</code></p>
+    </div>
+    
+  </section>
+
+  <!-- Runtime errors (package-specific) -->
+  
+  <section>
+    <h2>Runtime Errors</h2>
+    <p>Common errors when using <code>SQLAlchemy</code> after installation.</p>
+    
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">sqlalchemy.exc.OperationalError: no such table</h3>
+      <p><strong>Cause:</strong> The table has not been created in the database.</p>
+      <p><strong>Fix:</strong> Run <code>Base.metadata.create_all(engine)</code> before using any ORM models.</p>
+    </div>
+    
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">sqlalchemy.exc.IntegrityError: UNIQUE constraint failed</h3>
+      <p><strong>Cause:</strong> Inserting a record violates a unique constraint.</p>
+      <p><strong>Fix:</strong> Check for existing records before insert, or handle the exception and update instead.</p>
+    </div>
+    
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">sqlalchemy.orm.exc.NoResultFound</h3>
+      <p><strong>Cause:</strong> &lt;code&gt;.one()&lt;/code&gt; returned zero rows.</p>
+      <p><strong>Fix:</strong> Use <code>.one_or_none()</code> to return None instead of raising, or <code>.first()</code>.</p>
+    </div>
+    
+  </section>
+  
+
+  <!-- Recent releases -->
+  
+  <section>
+    <h2>Recent Releases</h2>
+    <table class="releases-table">
+      <thead>
+        <tr><th>Version</th><th>Released</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr class="current-release">
+          <td><code>2.0.49</code> <span class="badge badge-cat">latest</span></td>
+          <td>2026-04-03</td>
+        </tr>
+        
+        <tr>
+          <td><code>2.0.48</code></td>
+          <td>2026-03-02</td>
+        </tr>
+        
+        <tr>
+          <td><code>2.0.47</code></td>
+          <td>2026-02-24</td>
+        </tr>
+        
+        <tr>
+          <td><code>2.0.46</code></td>
+          <td>2026-01-21</td>
+        </tr>
+        
+        <tr>
+          <td><code>2.1.0b1</code></td>
+          <td>2026-01-21</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <p class="meta-small"><a href="https://pypi.org/project/SQLAlchemy/#history" rel="nofollow" target="_blank">Full release history on PyPI &rarr;</a></p>
+  </section>
+  
+
+  <!-- Upgrade / uninstall -->
+  <section>
+    <h2>Manage SQLAlchemy</h2>
+
+    <h3>Upgrade to latest version</h3>
+    <pre><code>pip install --upgrade SQLAlchemy</code></pre>
+
+    <h3>Install a specific version</h3>
+    <pre><code>pip install SQLAlchemy==2.0.49</code></pre>
+
+    <h3>Uninstall</h3>
+    <pre><code>pip uninstall SQLAlchemy</code></pre>
+
+    <h3>Check what is installed</h3>
+    <pre><code>pip show SQLAlchemy</code></pre>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: 2026-04-12 &bull; Data from <a href="https://pypi.org/project/SQLAlchemy/" rel="nofollow" target="_blank">PyPI</a></p>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- AdSense sidebar unit -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Deploy Python Apps</h3>
+        <ul class="resource-list">
+          <li><a href="https://m.do.co/c/XXXXXXXXXX" rel="nofollow sponsored" target="_blank">DigitalOcean — $200 free credit</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

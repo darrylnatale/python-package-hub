@@ -1,5 +1,4 @@
 data/package_cache/
-site/output/
 analytics/reports/
 __pycache__/
 *.pyc

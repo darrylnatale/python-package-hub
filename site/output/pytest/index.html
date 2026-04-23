@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>How to Install pytest in Python — Guide &amp; Error Fixes | Python Package Hub</title>
+<meta name="description" content="Complete guide to installing the pytest Python package. Includes pip commands, virtual environment setup, code examples, and fixes for common pytest errors.">
+<link rel="canonical" href="https://pip.dev-guides.com/pytest/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Install pytest in Python",
+  "description": "Step-by-step guide to install the pytest Python package.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Install with pip",
+      "text": "Run pip install pytest in your terminal."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify installation",
+      "text": "Run python -c \"import pytest\" to confirm the package installed."
+    }
+  ]
+}
+</script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <!-- Cloudflare Web Analytics — replace TOKEN with your token -->
+  <!--
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TOKEN"}'></script>
+  -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+
+    <div class="content">
+      
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>pytest</span>
+</nav>
+
+<article class="package-page">
+
+  <div class="package-header">
+    <h1>How to Install <code>pytest</code> in Python</h1>
+    <div class="package-meta">
+      <span class="badge">v9.0.3</span>
+      <span class="badge badge-cat">Testing &amp; QA</span>
+      <span class="badge">Python &gt;=3.10</span>
+      
+    </div>
+    <p class="summary">pytest: simple powerful testing with Python</p>
+  </div>
+
+  <div class="install-quick">
+    <span class="install-label">Install</span>
+    <code class="install-cmd">pip install pytest</code>
+  </div>
+
+  <!-- AdSense inline unit -->
+  <!--
+  <ins class="adsbygoogle" style="display:block;text-align:center;"
+       data-ad-layout="in-article" data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+
+  <!-- What is this package -->
+  <section>
+    <h2>What is pytest?</h2>
+    <p>pytest: simple powerful testing with Python</p>
+    
+    <p>The `` framework makes it easy to write small tests, yet
+scales to support complex functional testing for applications and libraries.</p>
+    
+    <p># content of testsample.py
+ def inc(x):
+ return x + 1</p>
+    
+    <p>def testanswer():
+ &gt; assert inc(3) == 5
+ E assert 4 == 5
+ E + where 4 = inc(3)</p>
+    
+    <div class="pkg-links">
+      
+      <a href="https://pypi.org/project/pytest/" rel="nofollow" target="_blank">PyPI page &rarr;</a>
+      <span class="meta-small">Author: Holger Krekel, Bruno Oliveira, Ronny Pfannschmidt, Floris Bruynooghe, Brianna Laugher, Freya Bruhin, Others (See AUTHORS)</span>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  
+  <section>
+    <h2>Quick Start</h2>
+    <p>Minimal example to get started with <code>pytest</code>:</p>
+    <pre><code># test_math.py
+def add(x, y):
+    return x + y
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0
+
+def test_add_strings():
+    assert add(&#34;a&#34;, &#34;b&#34;) == &#34;ab&#34;
+
+# Run: pytest test_math.py -v</code></pre>
+  </section>
+  
+
+  <!-- Installation -->
+  <section>
+    <h2>Installation</h2>
+
+    <h3>pip (standard)</h3>
+    <pre><code>pip install pytest</code></pre>
+
+    <h3>Virtual environment (recommended)</h3>
+    <pre><code>python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install pytest</code></pre>
+
+    <h3>pip3</h3>
+    <pre><code>pip3 install pytest</code></pre>
+
+    <h3>conda</h3>
+    <pre><code>conda install -c conda-forge pytest</code></pre>
+
+    <h3>Poetry</h3>
+    <pre><code>poetry add pytest</code></pre>
+  </section>
+
+  <!-- Dependencies -->
+  
+  <section>
+    <h2>Dependencies</h2>
+    <p>Installing <code>pytest</code> will also install these packages:</p>
+    <div class="dep-list">
+      
+      <a href="/colorama/" class="dep-tag">colorama</a>
+      
+      <a href="/exceptiongroup/" class="dep-tag">exceptiongroup</a>
+      
+      <a href="/iniconfig/" class="dep-tag">iniconfig</a>
+      
+      <a href="/packaging/" class="dep-tag">packaging</a>
+      
+      <a href="/pluggy/" class="dep-tag">pluggy</a>
+      
+      <a href="/pygments/" class="dep-tag">pygments</a>
+      
+      <a href="/tomli/" class="dep-tag">tomli</a>
+      
+    </div>
+  </section>
+  
+
+  <!-- Verify -->
+  <section>
+    <h2>Verify the Installation</h2>
+    <p>After installing, confirm the package is available:</p>
+    <pre><code>python -c &#34;import pytest; print(pytest.__version__)&#34;</code></pre>
+    <p>If this prints a version number, installation succeeded. If you see a <code>ModuleNotFoundError</code>, see the errors section below.</p>
+  </section>
+
+  <!-- Installation errors -->
+  <section>
+    <h2>Installation Errors</h2>
+    <p>Common errors when installing <code>pytest</code> with pip.</p>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;pytest&#39;</h3>
+      <p><strong>Cause:</strong> The package is not installed in the current Python environment.</p>
+      <p><strong>Fix:</strong> Run <code>pip install pytest</code>. If using a virtual environment, ensure it is activated first.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ModuleNotFoundError: No module named &#39;pytest&#39; (installed but still failing)</h3>
+      <p><strong>Cause:</strong> pip installed the package into a different Python than the one running your script.</p>
+      <p><strong>Fix:</strong> Use <code>python -m pip install pytest</code> to install into the interpreter you are running.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">ImportError: cannot import name &#39;X&#39; from &#39;pytest&#39;</h3>
+      <p><strong>Cause:</strong> The function or class does not exist in the installed version.</p>
+      <p><strong>Fix:</strong> Check the version with <code>pip show pytest</code> and upgrade with <code>pip install --upgrade pytest</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">pip: command not found</h3>
+      <p><strong>Cause:</strong> pip is not in PATH or Python was not added to PATH during installation.</p>
+      <p><strong>Fix:</strong> Try <code>python -m pip install pytest</code>. On macOS/Linux try <code>pip3</code>.</p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">PermissionError: [Errno 13] Permission denied</h3>
+      <p><strong>Cause:</strong> No write access to the system Python package directory.</p>
+      <p><strong>Fix:</strong> Use a virtual environment, or add <code>--user</code>: <code>pip install --user pytest</code></p>
+    </div>
+    
+    <div class="error-card">
+      <h3 class="error-title">SSL: CERTIFICATE_VERIFY_FAILED</h3>
+      <p><strong>Cause:</strong> pip cannot verify PyPI&#39;s SSL certificate — common behind corporate proxies.</p>
+      <p><strong>Fix:</strong> Try: <code>pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pytest</code></p>
+    </div>
+    
+  </section>
+
+  <!-- Runtime errors (package-specific) -->
+  
+  <section>
+    <h2>Runtime Errors</h2>
+    <p>Common errors when using <code>pytest</code> after installation.</p>
+    
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">fixture &#39;X&#39; not found</h3>
+      <p><strong>Cause:</strong> Fixture not in scope, misspelled, or the plugin providing it is not installed.</p>
+      <p><strong>Fix:</strong> Define the fixture in <code>conftest.py</code>. For plugin fixtures (e.g., <code>pytest-asyncio</code>), install the plugin.</p>
+    </div>
+    
+    <div class="error-card error-card--runtime">
+      <h3 class="error-title">ImportError while collecting test file</h3>
+      <p><strong>Cause:</strong> pytest cannot import the test module.</p>
+      <p><strong>Fix:</strong> Run <code>python -c 'import your_module'</code> to reproduce the error directly.</p>
+    </div>
+    
+  </section>
+  
+
+  <!-- Recent releases -->
+  
+  <section>
+    <h2>Recent Releases</h2>
+    <table class="releases-table">
+      <thead>
+        <tr><th>Version</th><th>Released</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr class="current-release">
+          <td><code>9.0.3</code> <span class="badge badge-cat">latest</span></td>
+          <td>2026-04-07</td>
+        </tr>
+        
+        <tr>
+          <td><code>9.0.2</code></td>
+          <td>2025-12-06</td>
+        </tr>
+        
+        <tr>
+          <td><code>9.0.1</code></td>
+          <td>2025-11-12</td>
+        </tr>
+        
+        <tr>
+          <td><code>9.0.0</code></td>
+          <td>2025-11-08</td>
+        </tr>
+        
+        <tr>
+          <td><code>8.4.2</code></td>
+          <td>2025-09-04</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <p class="meta-small"><a href="https://pypi.org/project/pytest/#history" rel="nofollow" target="_blank">Full release history on PyPI &rarr;</a></p>
+  </section>
+  
+
+  <!-- Upgrade / uninstall -->
+  <section>
+    <h2>Manage pytest</h2>
+
+    <h3>Upgrade to latest version</h3>
+    <pre><code>pip install --upgrade pytest</code></pre>
+
+    <h3>Install a specific version</h3>
+    <pre><code>pip install pytest==9.0.3</code></pre>
+
+    <h3>Uninstall</h3>
+    <pre><code>pip uninstall pytest</code></pre>
+
+    <h3>Check what is installed</h3>
+    <pre><code>pip show pytest</code></pre>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: 2026-04-12 &bull; Data from <a href="https://pypi.org/project/pytest/" rel="nofollow" target="_blank">PyPI</a></p>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- AdSense sidebar unit -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Deploy Python Apps</h3>
+        <ul class="resource-list">
+          <li><a href="https://m.do.co/c/XXXXXXXXXX" rel="nofollow sponsored" target="_blank">DigitalOcean — $200 free credit</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

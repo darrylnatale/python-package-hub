@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModuleNotFoundError: No module named 'qrcode' — Fix | Python Package Hub</title>
+  <meta name="description" content="Fix ModuleNotFoundError: No module named 'qrcode' with the exact pip install command. Includes verify step.">
+  <link rel="canonical" href="https://pip.dev-guides.com/qrcode/no-module-named-qrcode/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Fix ModuleNotFoundError: No module named 'qrcode'",
+    "description": "Install the qrcode package to resolve ModuleNotFoundError.",
+    "step": [
+      { "@type": "HowToStep", "name": "Install qrcode", "text": "Run pip install \"qrcode[pil]\" in your terminal." },
+      { "@type": "HowToStep", "name": "Verify", "text": "Run python -c \"import qrcode; print(qrcode.__version__)\"" }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav><a href="/">Home</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="layout">
+    <div class="content">
+
+      <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <a href="/qrcode/">qrcode</a> &rsaquo; <span>ModuleNotFoundError</span>
+      </nav>
+
+      <article class="package-page">
+
+        <div class="package-header">
+          <h1>ModuleNotFoundError: No module named 'qrcode'</h1>
+        </div>
+
+        <section>
+          <h2>Error</h2>
+          <pre><code>ModuleNotFoundError: No module named 'qrcode'</code></pre>
+        </section>
+
+        <section>
+          <h2>Fix</h2>
+          <pre><code>pip install "qrcode[pil]"</code></pre>
+        </section>
+
+        <section>
+          <h2>Verify</h2>
+          <pre><code>python -c "import qrcode; print(qrcode.__version__)"</code></pre>
+        </section>
+
+        <section>
+          <h2>Why</h2>
+          <p>The <code>[pil]</code> extra installs Pillow, which qrcode requires for image generation.</p>
+        </section>
+
+        <section>
+          <h2>Related</h2>
+          <ul>
+            <li><a href="/qrcode/import-qrcode-modulenotfounderror/">import qrcode ModuleNotFoundError</a></li>
+            <li><a href="/qrcode/installed-but-import-fails/">qrcode installed but import still fails</a></li>
+            <li><a href="/qrcode/pip-install-qrcode-pillow/">pip install qrcode pillow</a></li>
+            <li><a href="/qrcode/">qrcode package overview</a></li>
+          </ul>
+        </section>
+
+        <div class="page-meta">
+          <p>Last updated: 2026-04-23 &bull; Data from <a href="https://pypi.org/project/qrcode/" rel="nofollow" target="_blank">PyPI</a></p>
+        </div>
+
+      </article>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Learn Python</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.datacamp.com/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">DataCamp — Python Courses</a></li>
+          <li><a href="https://www.udemy.com/courses/development/programming-languages/python/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">Udemy — Python for Beginners</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Python IDE</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.jetbrains.com/pycharm/?utm_source=pythonpackagehub" rel="nofollow sponsored" target="_blank">PyCharm by JetBrains</a></li>
+          <li><a href="https://code.visualstudio.com/?utm_source=pythonpackagehub" rel="nofollow" target="_blank">VS Code (free)</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>
