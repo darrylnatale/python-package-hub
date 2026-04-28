@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ db.name }} Connection String — Python | Python Package Hub</title>
+  <meta name="description" content="Generate a {{ db.name }} connection string for Python. Interactive builders for SQLAlchemy and Django.">
+  <link rel="canonical" href="https://pip.dev-guides.com/tools/{{ db_slug }}/">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav><a href="/">Home</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <div style="max-width: 720px; padding: 2rem 0;">
+
+    <nav class="breadcrumb">
+      <a href="/">Home</a> &rsaquo; <a href="/tools/">Tools</a> &rsaquo; <span>{{ db.name }}</span>
+    </nav>
+
+    <h1 style="font-size: 1.75rem; margin-bottom: 0.75rem;">{{ db.name }} Connection String — Python</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Select your Python driver to generate the correct {{ db.name }} connection string or settings block.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      {% for driver_slug, driver in db.drivers.items() %}
+      <a href="/tools/{{ db_slug }}/{{ driver_slug }}/" style="display: block; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none;">
+        <strong>{{ driver.name }}</strong>
+        <span style="display: block; font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">{{ driver.description }}</span>
+        <code style="display: inline-block; margin-top: 0.4rem; font-size: 0.8rem; background: var(--code-bg); color: var(--code-text); padding: 0.15rem 0.4rem; border-radius: 3px;">{{ driver.install }}</code>
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

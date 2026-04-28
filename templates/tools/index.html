@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Connection String Builder — Python Package Hub</title>
+  <meta name="description" content="Generate database connection strings for Python. Interactive builders for SQLAlchemy, Django, and more.">
+  <link rel="canonical" href="https://pip.dev-guides.com/tools/">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav><a href="/">Home</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <div style="max-width: 720px; padding: 2rem 0;">
+
+    <nav class="breadcrumb">
+      <a href="/">Home</a> &rsaquo; <span>Tools</span>
+    </nav>
+
+    <h1 style="font-size: 1.75rem; margin-bottom: 0.75rem;">Database Connection String Builder</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Generate the exact connection string or settings block for your Python database driver. Enter your credentials and copy the result.</p>
+
+    <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">PostgreSQL</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      {% for driver_slug, driver in databases.postgresql.drivers.items() %}
+      <a href="/tools/postgresql/{{ driver_slug }}/" style="display: block; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none;">
+        <strong>{{ driver.name }}</strong>
+        <span style="display: block; font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">{{ driver.description }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+</body>
+</html>

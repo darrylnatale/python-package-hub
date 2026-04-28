@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ db.name }} Connection String — {{ driver.name }} | Python Package Hub</title>
+  <meta name="description" content="{{ driver.meta_description }}">
+  <link rel="canonical" href="https://pip.dev-guides.com/tools/{{ db_slug }}/{{ driver_slug }}/">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">Python Package Hub</a>
+    <nav><a href="/">Home</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <div style="max-width: 720px; padding: 2rem 0;">
+
+    <nav class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/tools/">Tools</a> &rsaquo;
+      <a href="/tools/{{ db_slug }}/">{{ db.name }}</a> &rsaquo;
+      <span>{{ driver.name }}</span>
+    </nav>
+
+    <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">{{ db.name }} Connection String — {{ driver.name }}</h1>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem;">{{ driver.seo_text | safe }}</p>
+
+    <section style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1rem; margin-bottom: 1rem;">Build your connection string</h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
+        {% for param in db.params %}
+        <div>
+          <label for="{{ param.id }}" style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-muted);">{{ param.label }}</label>
+          <input
+            id="{{ param.id }}"
+            class="builder-input"
+            type="{{ 'password' if param.id == 'password' else 'text' }}"
+            value="{{ param.default }}"
+            data-default="{{ param.default }}"
+            style="width: 100%; padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-mono); font-size: 0.875rem;"
+          >
+        </div>
+        {% endfor %}
+      </div>
+
+      <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-muted);">Connection string</label>
+      <div style="position: relative;">
+        <pre id="conn-output" style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 6px; font-size: 0.875rem; white-space: pre-wrap; word-break: break-all; margin: 0;"></pre>
+        <button onclick="copyOutput()" style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: none; border-radius: 4px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">Copy</button>
+      </div>
+    </section>
+
+    <section style="margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1rem; margin-bottom: 0.75rem;">Install</h2>
+      <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 6px; font-size: 0.875rem; margin: 0;"><code>{{ driver.install }}</code></pre>
+    </section>
+
+    <section style="margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1rem; margin-bottom: 0.75rem;">Usage</h2>
+      <pre id="usage-block" style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 6px; font-size: 0.875rem; margin: 0; white-space: pre-wrap; word-break: break-all;"></pre>
+    </section>
+
+    <p style="font-size: 0.875rem; color: var(--text-muted);">
+      &larr; <a href="/tools/{{ db_slug }}/">Back to {{ db.name }} drivers</a>
+    </p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Python Package Hub — Installation guides and error fixes for Python packages.</p>
+    <p>Package data sourced from <a href="https://pypi.org" rel="nofollow">PyPI</a>. Not affiliated with PyPI or the Python Software Foundation.</p>
+  </div>
+</footer>
+
+<span id="conn-template" style="display:none;">{{ driver.template }}</span>
+<span id="usage-template" style="display:none;">{{ driver.usage }}</span>
+
+<script>
+(function () {
+  var connTmpl  = document.getElementById('conn-template').textContent;
+  var usageTmpl = document.getElementById('usage-template').textContent;
+
+  function getVals() {
+    var vals = {};
+    document.querySelectorAll('.builder-input').forEach(function (el) {
+      vals[el.id] = el.value !== '' ? el.value : el.dataset.default;
+    });
+    return vals;
+  }
+
+  function render(tmpl, vals) {
+    return tmpl.replace(/\{(\w+)\}/g, function (_, k) {
+      return vals[k] !== undefined ? vals[k] : '';
+    });
+  }
+
+  function update() {
+    var vals   = getVals();
+    var conn   = render(connTmpl, vals);
+    var usage  = render(usageTmpl.replace('{output}', conn), vals);
+    document.getElementById('conn-output').textContent  = conn;
+    document.getElementById('usage-block').textContent  = usage;
+  }
+
+  document.querySelectorAll('.builder-input').forEach(function (el) {
+    el.addEventListener('input', update);
+  });
+
+  update();
+})();
+
+function copyOutput() {
+  var text = document.getElementById('conn-output').textContent;
+  navigator.clipboard.writeText(text).then(function () {
+    var btn = document.querySelector('button[onclick="copyOutput()"]');
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

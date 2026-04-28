@@ -1,0 +1,35 @@
+{
+  "postgresql": {
+    "name": "PostgreSQL",
+    "default_port": 5432,
+    "params": [
+      { "id": "host",     "label": "Host",     "default": "localhost" },
+      { "id": "port",     "label": "Port",     "default": "5432"     },
+      { "id": "user",     "label": "User",     "default": "postgres" },
+      { "id": "password", "label": "Password", "default": ""         },
+      { "id": "database", "label": "Database", "default": "mydb"     }
+    ],
+    "drivers": {
+      "sqlalchemy": {
+        "name": "SQLAlchemy",
+        "install": "pip install sqlalchemy psycopg2-binary",
+        "format": "URL string",
+        "template": "postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}",
+        "usage": "from sqlalchemy import create_engine\nengine = create_engine(\"{output}\")",
+        "description": "SQLAlchemy engine URL for PostgreSQL using the psycopg2 driver.",
+        "meta_description": "Generate a PostgreSQL connection string for SQLAlchemy. Enter your host, port, user, password, and database name to get the correct create_engine URL.",
+        "seo_text": "The SQLAlchemy PostgreSQL connection string uses the format <code>postgresql+psycopg2://user:password@host:port/database</code>. Use this builder to generate the correct <code>create_engine</code> URL for your PostgreSQL database. Requires <code>psycopg2-binary</code> installed alongside SQLAlchemy."
+      },
+      "django": {
+        "name": "Django",
+        "install": "pip install psycopg2-binary",
+        "format": "settings dict",
+        "template": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': '{database}',\n        'USER': '{user}',\n        'PASSWORD': '{password}',\n        'HOST': '{host}',\n        'PORT': '{port}',\n    }\n}",
+        "usage": "Paste into your Django settings.py file.",
+        "description": "Django DATABASES settings dict for PostgreSQL.",
+        "meta_description": "Generate the correct Django DATABASES settings for PostgreSQL. Enter your credentials to get the exact settings.py configuration block.",
+        "seo_text": "The Django PostgreSQL database setting uses the <code>django.db.backends.postgresql</code> engine and requires a <code>DATABASES</code> dictionary in <code>settings.py</code>. Use this builder to generate the correct Django database configuration for PostgreSQL. Requires <code>psycopg2-binary</code> to be installed."
+      }
+    }
+  }
+}
