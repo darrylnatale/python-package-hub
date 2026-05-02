@@ -82,6 +82,19 @@
     <code class="install-cmd">pip install qrcode</code>
   </div>
 
+  <section id="quick-fix">
+    <h2>Quick Fix</h2>
+
+    <h3>ModuleNotFoundError: No module named 'qrcode'</h3>
+    <pre><code>pip install "qrcode[pil]"</code></pre>
+
+    <h3>pip install qrcode (correct usage)</h3>
+    <pre><code>pip install "qrcode[pil]"</code></pre>
+
+    <h3>pip install qrcode 7.4.2</h3>
+    <pre><code>pip install "qrcode[pil]==7.4.2"</code></pre>
+  </section>
+
   <!-- AdSense inline unit -->
   <!--
   <ins class="adsbygoogle" style="display:block;text-align:center;"
@@ -171,46 +184,75 @@ pip install qrcode</code></pre>
   </section>
 
   <!-- Installation errors -->
-  <section>
-    <h2>Installation Errors</h2>
-    <p>Common errors when installing <code>qrcode</code> with pip.</p>
-    
-    <div class="error-card">
-      <h3 class="error-title">ModuleNotFoundError: No module named &#39;qrcode&#39;</h3>
-      <p><strong>Cause:</strong> The package is not installed in the current Python environment.</p>
-      <p><strong>Fix:</strong> Run <code>pip install qrcode</code>. If using a virtual environment, ensure it is activated first.</p>
-    </div>
-    
-    <div class="error-card">
-      <h3 class="error-title">ModuleNotFoundError: No module named &#39;qrcode&#39; (installed but still failing)</h3>
-      <p><strong>Cause:</strong> pip installed the package into a different Python than the one running your script.</p>
-      <p><strong>Fix:</strong> Use <code>python -m pip install qrcode</code> to install into the interpreter you are running.</p>
-    </div>
-    
-    <div class="error-card">
-      <h3 class="error-title">ImportError: cannot import name &#39;X&#39; from &#39;qrcode&#39;</h3>
-      <p><strong>Cause:</strong> The function or class does not exist in the installed version.</p>
-      <p><strong>Fix:</strong> Check the version with <code>pip show qrcode</code> and upgrade with <code>pip install --upgrade qrcode</code>.</p>
-    </div>
-    
-    <div class="error-card">
-      <h3 class="error-title">pip: command not found</h3>
-      <p><strong>Cause:</strong> pip is not in PATH or Python was not added to PATH during installation.</p>
-      <p><strong>Fix:</strong> Try <code>python -m pip install qrcode</code>. On macOS/Linux try <code>pip3</code>.</p>
-    </div>
-    
-    <div class="error-card">
-      <h3 class="error-title">PermissionError: [Errno 13] Permission denied</h3>
-      <p><strong>Cause:</strong> No write access to the system Python package directory.</p>
-      <p><strong>Fix:</strong> Use a virtual environment, or add <code>--user</code>: <code>pip install --user qrcode</code></p>
-    </div>
-    
-    <div class="error-card">
-      <h3 class="error-title">SSL: CERTIFICATE_VERIFY_FAILED</h3>
-      <p><strong>Cause:</strong> pip cannot verify PyPI&#39;s SSL certificate — common behind corporate proxies.</p>
-      <p><strong>Fix:</strong> Try: <code>pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qrcode</code></p>
-    </div>
-    
+  <section id="modulenotfounderror">
+    <h2>ModuleNotFoundError: No module named 'qrcode'</h2>
+    <pre><code>ModuleNotFoundError: No module named 'qrcode'</code></pre>
+    <p><strong>Fix:</strong></p>
+    <pre><code>pip install "qrcode[pil]"</code></pre>
+    <p><strong>Variants:</strong></p>
+    <pre><code>pip3 install "qrcode[pil]"
+python -m pip install "qrcode[pil]"
+source venv/bin/activate &amp;&amp; pip install "qrcode[pil]"</code></pre>
+    <p><strong>Diagnose:</strong></p>
+    <pre><code>pip show qrcode
+which python &amp;&amp; which pip</code></pre>
+    <p>The package is not installed in the current Python environment. The <code>[pil]</code> extra installs Pillow, required for image output.</p>
+  </section>
+
+  <section id="import-qrcode-error">
+    <h2>import qrcode ModuleNotFoundError: No module named 'qrcode'</h2>
+    <pre><code>import qrcode
+ModuleNotFoundError: No module named 'qrcode'</code></pre>
+    <p><strong>Fix:</strong></p>
+    <pre><code>python -m pip install "qrcode[pil]"</code></pre>
+    <p><strong>Variants:</strong></p>
+    <pre><code>pip3 install "qrcode[pil]"
+source venv/bin/activate &amp;&amp; pip install "qrcode[pil]"</code></pre>
+    <p><strong>Diagnose:</strong></p>
+    <pre><code>python -c "import sys; print(sys.executable)"
+pip show qrcode</code></pre>
+    <p>Using <code>python -m pip</code> guarantees the package installs into the same interpreter that runs your script.</p>
+  </section>
+
+  <section id="installed-but-fails">
+    <h2>qrcode installed but ModuleNotFoundError still appears</h2>
+    <p><strong>Symptom:</strong> <code>pip install qrcode</code> succeeds, then <code>import qrcode</code> still raises <code>ModuleNotFoundError</code>.</p>
+    <p><strong>Fix:</strong></p>
+    <pre><code>python -m pip install "qrcode[pil]"</code></pre>
+    <p><strong>Variants:</strong></p>
+    <pre><code>pip3 install "qrcode[pil]"
+source venv/bin/activate &amp;&amp; pip install "qrcode[pil]"</code></pre>
+    <p><strong>Diagnose:</strong></p>
+    <pre><code>pip show qrcode
+python -c "import sys; print(sys.path)"</code></pre>
+    <p><code>pip</code> and <code>python</code> point to different environments — the install succeeded in a location the running interpreter never checks.</p>
+  </section>
+
+  <section id="pillow-dependency">
+    <h2>pip install qrcode pillow — why Pillow is required</h2>
+    <pre><code>qrcode.exceptions.ModuleNotFoundError: No module named 'PIL'</code></pre>
+    <p><strong>Fix:</strong></p>
+    <pre><code>pip install "qrcode[pil]"</code></pre>
+    <p><strong>Variants:</strong></p>
+    <pre><code>pip install qrcode pillow
+pip3 install "qrcode[pil]"
+python -m pip install "qrcode[pil]"</code></pre>
+    <p><strong>Diagnose:</strong></p>
+    <pre><code>python -c "import PIL; print(PIL.__version__)"</code></pre>
+    <p>qrcode requires Pillow for PNG and image-format output. Plain <code>pip install qrcode</code> omits it — use <code>qrcode[pil]</code> to install both.</p>
+  </section>
+
+  <section id="version-742">
+    <h2>pip install qrcode 7.4.2 — install exact version</h2>
+    <p><strong>Fix:</strong></p>
+    <pre><code>pip install "qrcode[pil]==7.4.2"</code></pre>
+    <p><strong>Variants:</strong></p>
+    <pre><code>pip install "qrcode==7.4.2"
+pip3 install "qrcode[pil]==7.4.2"
+pip install --upgrade "qrcode[pil]"</code></pre>
+    <p><strong>Diagnose:</strong></p>
+    <pre><code>pip show qrcode</code></pre>
+    <p>Version 7.4.2 was released 2023-02-05. The current latest is 8.2 (2025-05-01). Pin only if your project requires a locked dependency.</p>
   </section>
 
   <!-- Runtime errors (package-specific) -->
@@ -277,11 +319,11 @@ pip install qrcode</code></pre>
   <section id="common-problems">
     <h2>Common Problems</h2>
     <ul>
-      <li><a href="/qrcode/no-module-named-qrcode/">ModuleNotFoundError: No module named 'qrcode'</a></li>
-      <li><a href="/qrcode/import-qrcode-modulenotfounderror/">import qrcode ModuleNotFoundError</a></li>
-      <li><a href="/qrcode/installed-but-import-fails/">qrcode installed but import still fails</a></li>
-      <li><a href="/qrcode/pip-install-qrcode-pillow/">pip install qrcode pillow — why both are needed</a></li>
-      <li><a href="/qrcode/install-7-4-2/">pip install qrcode 7.4.2 — exact version</a></li>
+      <li><a href="#modulenotfounderror">ModuleNotFoundError: No module named 'qrcode'</a></li>
+      <li><a href="#import-qrcode-error">import qrcode ModuleNotFoundError: No module named 'qrcode'</a></li>
+      <li><a href="#installed-but-fails">qrcode installed but ModuleNotFoundError still appears</a></li>
+      <li><a href="#pillow-dependency">pip install qrcode pillow — why Pillow is required</a></li>
+      <li><a href="#version-742">pip install qrcode 7.4.2 — install exact version</a></li>
     </ul>
   </section>
 

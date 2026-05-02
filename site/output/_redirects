@@ -1,0 +1,5 @@
+/qrcode/no-module-named-qrcode/            /qrcode/#modulenotfounderror  301
+/qrcode/import-qrcode-modulenotfounderror/ /qrcode/#import-qrcode-error  301
+/qrcode/installed-but-import-fails/        /qrcode/#installed-but-fails  301
+/qrcode/pip-install-qrcode-pillow/         /qrcode/#pillow-dependency    301
+/qrcode/install-7-4-2/                     /qrcode/#version-742          301
