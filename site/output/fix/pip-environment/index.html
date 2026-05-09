@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pip install worked but module not found — diagnose your Python environment</title>
+<meta name="description" content="pip install succeeded but you're still getting ModuleNotFoundError. This tool identifies your exact root cause — interpreter mismatch, venv conflict, Jupyter kernel, or IDE issue — and gives you the specific fix command.">
+<link rel="canonical" href="https://pip.dev-guides.com/fix/pip-environment/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to fix pip install succeeds but module not found","description":"Diagnose and fix the pip/Python interpreter mismatch causing ModuleNotFoundError after a successful pip install","step":[{"@type":"HowToStep","text":"Run pip --version and python3 --version in your terminal"},{"@type":"HowToStep","text":"Compare the Python version shown in each output"},{"@type":"HowToStep","text":"Apply the fix command for your specific mismatch type"}]}
+</script>
+<style>
+:root{
+  --blue:#2563eb;--blue-dark:#1d4ed8;--bg:#fff;--bg-alt:#f8fafc;
+  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;
+  --code-bg:#1e293b;--code-text:#e2e8f0;--green:#16a34a;--red:#dc2626;
+  --orange:#d97706;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6;font-size:16px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:820px;margin:0 auto;padding:0 1.25rem}
+.site-header{background:var(--blue);padding:.875rem 0;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.logo{color:#fff;font-weight:700;font-size:1.1rem;text-decoration:none}
+.site-header nav a{color:rgba(255,255,255,.85);margin-left:1.5rem;font-size:.9rem}
+.site-header nav a:hover{color:#fff;text-decoration:none}
+.content{padding:2rem 0 4rem}
+.breadcrumb{font-size:.875rem;color:var(--muted);margin-bottom:1.5rem}
+.breadcrumb a{color:var(--muted)}
+h1{font-size:1.75rem;line-height:1.3;margin-bottom:.75rem}
+h2{font-size:1.2rem;margin-top:1.75rem;margin-bottom:.6rem}
+h3{font-size:1rem;margin-top:1.25rem;margin-bottom:.4rem}
+p{margin-bottom:.9rem;color:var(--text)}
+p.lead{font-size:1.05rem;color:var(--muted);margin-bottom:1.25rem}
+code{background:var(--bg-alt);border:1px solid var(--border);padding:.1rem .35rem;border-radius:3px;font-family:var(--mono);font-size:.875rem}
+pre{background:var(--code-bg);color:var(--code-text);padding:1rem 1.25rem;border-radius:6px;overflow-x:auto;margin:.75rem 0;font-family:var(--mono);font-size:.875rem;line-height:1.5}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+.site-footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-size:.875rem}
+
+/* Instant fix box */
+.instant-fix{background:var(--bg-alt);border:2px solid var(--blue);border-radius:8px;padding:1.25rem 1.5rem;margin:1.25rem 0}
+.instant-fix-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.5rem}
+.cmd-row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.5rem 0}
+.cmd-row pre{margin:0;flex:1;min-width:0}
+.note{font-size:.875rem;color:var(--muted);margin-top:.5rem;margin-bottom:0}
+
+/* Jump links */
+.jump-links{background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:.6rem 1rem;font-size:.875rem;margin:1rem 0;color:var(--text)}
+.jump-links a{margin:0 .25rem;white-space:nowrap}
+
+/* Wizard */
+.wizard{background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-top:1.5rem}
+.wizard-step-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.35rem}
+.wizard h2{margin-top:0}
+
+/* OS chips */
+.chip-group{display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap}
+.chip{display:inline-block;padding:.35rem .9rem;border:2px solid var(--border);border-radius:999px;font-size:.875rem;cursor:pointer;background:#fff;transition:all .15s}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip.active{border-color:var(--blue);background:var(--blue);color:#fff}
+
+/* Buttons */
+.btn{display:inline-block;padding:.55rem 1.25rem;border-radius:6px;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:background .15s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark)}
+.btn-sm{padding:.3rem .75rem;font-size:.825rem;font-weight:600;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text);transition:all .15s}
+.btn-sm:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm.copied{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* Inputs */
+label{display:block;font-size:.875rem;font-weight:600;margin-bottom:.3rem;color:var(--text)}
+.label-sub{font-size:.8rem;font-weight:400;color:var(--muted);margin-left:.35rem}
+input[type=text]{width:100%;padding:.55rem .75rem;border:1px solid var(--border);border-radius:6px;font-family:var(--mono);font-size:.875rem;color:var(--text);margin-bottom:.25rem}
+input[type=text]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.input-hint{font-size:.8rem;color:var(--muted);margin-bottom:.9rem}
+
+/* Diagnosis card */
+.diag-card{border-radius:8px;padding:1.5rem;margin-top:1.25rem;border:1px solid}
+.diag-card.version-mismatch{background:#fff7ed;border-color:#fed7aa}
+.diag-card.path-mismatch{background:#fef9c3;border-color:#fde68a}
+.diag-card.user-site-conflict{background:#f0fdf4;border-color:#bbf7d0}
+.diag-card.venv-inactive{background:#f0f9ff;border-color:#bae6fd}
+.diag-card.conda-conflict{background:#faf5ff;border-color:#e9d5ff}
+.diag-card.syspath-check{background:#f8fafc;border-color:#cbd5e1}
+.diag-card.jupyter-kernel{background:#fff1f2;border-color:#fecdd3}
+.diag-card.ide-interpreter{background:#f0fdf4;border-color:#bbf7d0}
+.diag-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.diag-paths{background:rgba(0,0,0,.04);border-radius:4px;padding:.5rem .75rem;font-size:.8rem;font-family:var(--mono);margin:.75rem 0;color:var(--text)}
+.diag-paths span{display:block;color:var(--muted);font-family:var(--font);font-size:.75rem;margin-bottom:.1rem}
+
+/* Action row */
+.action-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;padding-top:.75rem;border-top:1px solid rgba(0,0,0,.08)}
+
+/* Subchips (IDE selector) */
+.sub-chip-group{display:flex;gap:.5rem;margin:.5rem 0}
+.sub-chip{padding:.25rem .7rem;border:1px solid var(--border);border-radius:4px;font-size:.825rem;cursor:pointer;background:#fff}
+.sub-chip.active{border-color:var(--blue);background:var(--blue);color:#fff}
+
+/* Fallback checklist */
+.checklist{list-style:none;margin:.75rem 0}
+.checklist li{padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:.5rem;align-items:flex-start}
+.checklist li::before{content:"□";font-family:var(--mono);color:var(--muted);flex-shrink:0}
+
+/* Util */
+.hidden{display:none!important}
+.mt-1{margin-top:.5rem}
+.mt-2{margin-top:1rem}
+.text-muted{color:var(--muted)}
+.text-sm{font-size:.875rem}
+.didnt-work{font-size:.875rem;color:var(--muted);margin-top:.5rem}
+
+@media(max-width:600px){
+  h1{font-size:1.4rem}
+  .cmd-row{flex-direction:column;align-items:flex-start}
+  .action-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">pip.dev-guides.com</a>
+    <nav>
+      <a href="/fix/pip-environment/">Diagnostics</a>
+      <a href="/cheapest-cloud-storage/">Cloud Storage</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container content">
+
+<nav class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <span>pip Environment Diagnostic</span>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ABOVE-FOLD: INSTANT VALUE
+════════════════════════════════════════════════════════════════ -->
+<h1>pip install worked. The module is still missing.</h1>
+<p class="lead">This happens because <code>pip</code> and <code>python</code> are two separate commands — they can point to different Python installations. pip installs to one; your script runs on another.</p>
+
+<div class="instant-fix">
+  <div class="instant-fix-label">Most common fix — try this first</div>
+  <div class="cmd-row">
+    <pre id="quick-fix-cmd"><code>python -m pip install [package]</code></pre>
+    <button class="btn-sm" onclick="copyText(this,'python -m pip install [package]')">Copy</button>
+  </div>
+  <p class="note"><code>python&nbsp;-m&nbsp;pip</code> guarantees the install goes into the same Python that runs your script. If this fixes it, you're done. If not, the diagnostic below finds the exact cause.</p>
+</div>
+
+<!-- Jump links for known contexts -->
+<div class="jump-links">
+  <strong>Know your context?</strong> Skip to:
+  <a href="javascript:void(0)" onclick="jumpTo('J')">Jupyter notebook</a> &middot;
+  <a href="javascript:void(0)" onclick="jumpTo('IVS')">VS&nbsp;Code</a> &middot;
+  <a href="javascript:void(0)" onclick="jumpTo('IPY')">PyCharm</a> &middot;
+  <a href="javascript:void(0)" onclick="jumpTo('D3')">Conda environment</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WIZARD
+════════════════════════════════════════════════════════════════ -->
+<div class="wizard" id="wizard">
+  <div class="wizard-step-label">2-minute diagnostic</div>
+  <h2>Run two commands, paste the output</h2>
+  <p>This identifies which of the 6 common root causes matches your setup.</p>
+
+  <!-- OS selector -->
+  <label>Your operating system:</label>
+  <div class="chip-group" id="os-chips">
+    <button class="chip" id="chip-mac" onclick="selectOS('mac')">macOS / Linux</button>
+    <button class="chip" id="chip-win" onclick="selectOS('win')">Windows</button>
+  </div>
+
+  <!-- Command display -->
+  <p class="text-sm text-muted" style="margin-top:.25rem">Run these in your terminal:</p>
+  <div id="cmd-mac">
+    <div class="cmd-row">
+      <pre><code>pip --version</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'pip --version')">Copy</button>
+    </div>
+    <div class="cmd-row">
+      <pre><code>python3 --version</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'python3 --version')">Copy</button>
+    </div>
+  </div>
+  <div id="cmd-win" class="hidden">
+    <div class="cmd-row">
+      <pre><code>pip --version</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'pip --version')">Copy</button>
+    </div>
+    <div class="cmd-row">
+      <pre><code>python --version</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'python --version')">Copy</button>
+    </div>
+  </div>
+
+  <!-- Inputs -->
+  <div style="margin-top:1rem">
+    <label for="pip-out">Output of <code>pip --version</code>: <span class="label-sub">e.g. pip 23.0 from /usr/local/lib/python3.10/... (python 3.10)</span></label>
+    <input type="text" id="pip-out" placeholder="pip 23.0.1 from /usr/lib/python3/dist-packages/pip (python 3.10)" autocomplete="off" spellcheck="false">
+
+    <label for="py-out" style="margin-top:.5rem">Output of <code>python3 --version</code> (or <code>python --version</code>): <span class="label-sub">e.g. Python 3.11.0</span></label>
+    <input type="text" id="py-out" placeholder="Python 3.11.0" autocomplete="off" spellcheck="false">
+    <p class="input-hint">Paste the full output of each command exactly as shown in your terminal.</p>
+  </div>
+
+  <button class="btn btn-primary" onclick="checkPaths()" style="margin-top:.25rem">Find root cause &rarr;</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     VENV CHECK (Branch D only)
+════════════════════════════════════════════════════════════════ -->
+<div class="wizard hidden" id="venv-check">
+  <div class="wizard-step-label">Step 3 — Deeper investigation</div>
+  <h2>Is a virtual environment active?</h2>
+  <p>Your pip and Python versions match, so we need to check one more thing.</p>
+
+  <p class="text-sm" style="margin-bottom:.35rem">Run this command:</p>
+  <div id="venv-cmd-mac">
+    <div class="cmd-row">
+      <pre><code>echo $VIRTUAL_ENV</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'echo $VIRTUAL_ENV')">Copy</button>
+    </div>
+  </div>
+  <div id="venv-cmd-win" class="hidden">
+    <div class="cmd-row">
+      <pre><code>echo %VIRTUAL_ENV%</code></pre>
+      <button class="btn-sm" onclick="copyText(this,'echo %VIRTUAL_ENV%')">Copy</button>
+    </div>
+  </div>
+
+  <label style="margin-top:.75rem">What did it show?</label>
+  <div class="chip-group" style="flex-direction:column;align-items:flex-start;gap:.4rem">
+    <button class="chip" onclick="subBranch('D1')" style="border-radius:6px;text-align:left">A path (like <code>/home/user/myproject/venv</code>) — venv is active</button>
+    <button class="chip" onclick="subBranch('D2')" style="border-radius:6px">Empty / nothing — no active venv</button>
+    <button class="chip" onclick="subBranch('D3')" style="border-radius:6px">I am using conda</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DIAGNOSIS AREA (JS-rendered)
+════════════════════════════════════════════════════════════════ -->
+<div id="diag-area"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FALLBACK CHECKLIST
+════════════════════════════════════════════════════════════════ -->
+<div id="fallback-section" class="hidden" style="margin-top:2rem">
+  <h2>Manual diagnostic checklist</h2>
+  <p class="text-sm text-muted">Run each command and compare the outputs:</p>
+  <ul class="checklist">
+    <li id="fb-1"><div><code>pip --version</code> — note the Python version in parentheses</div></li>
+    <li id="fb-2"><div><code>python3 --version</code> — compare this Python version to the one above</div></li>
+    <li id="fb-3"><div><code>pip show [package]</code> — note the <strong>Location:</strong> field</div></li>
+    <li id="fb-4"><div><code>python3 -c "import sys; print('\n'.join(sys.path))"</code> — is the Location from above listed here?</div></li>
+    <li id="fb-5"><div>If Location is <em>not</em> in sys.path: use <code>python3 -m pip install [package]</code> to target the correct interpreter</div></li>
+    <li id="fb-6"><div>If Location is in sys.path but import still fails: check for a local file named the same as the package in your working directory</div></li>
+  </ul>
+  <div class="cmd-row" style="margin-top:.75rem">
+    <button class="btn-sm" onclick="copyCopyAll('fallback')">Copy all diagnostic commands</button>
+  </div>
+</div>
+
+<footer class="site-footer" style="margin-top:3rem">
+  <div>
+    <a href="/">pip.dev-guides.com</a> &middot;
+    <a href="/qrcode/">qrcode install guide</a> &middot;
+    <a href="/google-auth/">google-auth install guide</a>
+  </div>
+</footer>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT — STATE MACHINE + LOGIC
+════════════════════════════════════════════════════════════════ -->
+<script>
+// ─── State ────────────────────────────────────────────────────────────────────
+const S = {
+  os: 'mac',
+  pipRaw: '',
+  pyRaw: '',
+  pipVersion: null,
+  pyVersion: null,
+  pipRoot: '',
+  pyRoot: '',
+  branch: null,
+  subBranch: null,
+  diagCode: null,
+  attempt: 0
+};
+
+// ─── Version extraction ────────────────────────────────────────────────────────
+function extractVersion(text) {
+  if (!text) return null;
+  text = text.trim();
+  // pip --version: "pip X.Y.Z from /path (python A.B)"
+  const m1 = text.match(/\(python\s+(\d+\.\d+)/i);
+  if (m1) return m1[1];
+  // "Python A.B.C"
+  const m2 = text.match(/^Python\s+(\d+\.\d+)/i);
+  if (m2) return m2[1];
+  // Path with python3.X
+  const m3 = text.match(/python(\d+)\.(\d+)/i);
+  if (m3) return m3[1] + '.' + m3[2];
+  // Windows Python311 directory
+  const m4 = text.match(/[\/\\][Pp]ython(\d)(\d\d)[\/\\]/);
+  if (m4) return m4[1] + '.' + m4[2];
+  return null;
+}
+
+// ─── Root extraction ───────────────────────────────────────────────────────────
+function extractRoot(text) {
+  if (!text) return '';
+  text = text.trim();
+  // From pip --version output, extract path after "from "
+  const fromM = text.match(/from\s+(\S+)/i);
+  const path = fromM ? fromM[1] : text;
+  const low = path.toLowerCase().replace(/\\/g, '/');
+  // If there are no slashes, this is a bare version string — can't determine root
+  if (!low.includes('/')) return '';
+  // User-site patterns
+  if (low.includes('/.local/') ||
+      low.includes('/appdata/roaming/python') ||
+      low.includes('/appdata/local/packages')) {
+    return 'user-site';
+  }
+  // Find installation root (parent of bin/scripts)
+  const binIdx = Math.max(low.lastIndexOf('/bin/'), low.lastIndexOf('/scripts/'));
+  if (binIdx > 0) return path.substring(0, binIdx).toLowerCase();
+  // Fall back to first 3 path segments
+  const parts = low.split('/').filter(Boolean);
+  return '/' + parts.slice(0, 2).join('/');
+}
+
+// ─── Branch classification ─────────────────────────────────────────────────────
+function classifyBranch() {
+  const pV = extractVersion(S.pipRaw);
+  const yV = extractVersion(S.pyRaw);
+  S.pipVersion = pV;
+  S.pyVersion = yV;
+  S.pipRoot = extractRoot(S.pipRaw);
+  S.pyRoot = extractRoot(S.pyRaw);
+
+  // User-site install
+  if (S.pipRoot === 'user-site') return 'C';
+
+  // Version mismatch (both extracted, different)
+  if (pV && yV && pV !== yV) return 'A';
+
+  // Same version, different roots — only compare if BOTH roots are determinable
+  if (S.pipRoot && S.pyRoot && S.pipRoot !== 'user-site' && S.pipRoot !== S.pyRoot) return 'B';
+
+  // Paths seem to match → venv state check needed
+  if (S.pipRaw.trim() || S.pyRaw.trim()) return 'D';
+
+  return 'E'; // empty input fallback
+}
+
+// ─── OS UI ────────────────────────────────────────────────────────────────────
+function selectOS(os) {
+  S.os = os;
+  document.getElementById('chip-mac').classList.toggle('active', os === 'mac');
+  document.getElementById('chip-win').classList.toggle('active', os === 'win');
+  document.getElementById('cmd-mac').classList.toggle('hidden', os !== 'mac');
+  document.getElementById('cmd-win').classList.toggle('hidden', os !== 'win');
+  document.getElementById('venv-cmd-mac').classList.toggle('hidden', os !== 'mac');
+  document.getElementById('venv-cmd-win').classList.toggle('hidden', os !== 'win');
+}
+
+function detectOS() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isWin = ua.includes('windows') || ua.includes('win32') || ua.includes('win64');
+  selectOS(isWin ? 'win' : 'mac');
+}
+
+// ─── Copy utility ──────────────────────────────────────────────────────────────
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    // fallback: select text
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
+function copyCopyAll(branch) {
+  const text = buildCopyAll(branch || S.branch);
+  navigator.clipboard.writeText(text).catch(() => {});
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copied to clipboard';
+  setTimeout(() => { btn.textContent = orig; }, 2500);
+}
+
+// ─── Copy-all command builder ──────────────────────────────────────────────────
+function buildCopyAll(branch) {
+  const isWin = S.os === 'win';
+  const venvCmd = isWin ? 'echo %VIRTUAL_ENV%' : 'echo $VIRTUAL_ENV';
+  const whichPip = isWin ? 'where pip' : 'which pip';
+  const whichPy  = isWin ? 'where python' : 'which python3';
+
+  const base = `# pip environment diagnostic commands
+# Paste this block in your terminal and share the output when asking for help
+
+pip --version
+${isWin ? 'python' : 'python3'} --version
+${venvCmd}
+pip show [package]
+${isWin ? 'python' : 'python3'} -c "import sys; print('\\n'.join(sys.path))"`;
+
+  const extras = {
+    A: `\n# Version mismatch — also run:\n${isWin ? 'py -0p' : 'ls /usr/bin/python* /usr/local/bin/python* 2>/dev/null'}`,
+    B: `\n# Installation mismatch — also run:\n${whichPip}\n${whichPy}`,
+    C: `\n# User-site install — also run:\n${isWin ? 'python' : 'python3'} -c "import site; print(site.getusersitepackages())"`,
+    D1: `\n# Venv timing — also run:\npip list | grep [package]`,
+    D2: `\n# sys.path check — also run:\n${isWin ? 'python' : 'python3'} -c "import sys; [print(p) for p in sys.path]"`,
+    D3: `\n# Conda — also run:\nconda info --envs\nconda list [package]`,
+    E: '',
+    J: `\n# Jupyter — run inside a notebook cell:\nimport sys\nprint(sys.executable)\nprint(sys.path)`,
+    IVS: `\n# VS Code — check terminal:\npip --version\n${isWin ? 'python' : 'python3'} --version`,
+    IPY: `\n# PyCharm — in terminal:\npip --version\n${isWin ? 'python' : 'python3'} --version`
+  };
+
+  return base + (extras[branch] || '');
+}
+
+// ─── Deep link generator ───────────────────────────────────────────────────────
+function branchToCode(branch) {
+  const map = {
+    A:'version-mismatch', B:'path-mismatch', C:'user-site-conflict',
+    D1:'venv-inactive', D2:'syspath-check', D3:'conda-conflict',
+    J:'jupyter-kernel', IVS:'vscode-interpreter', IPY:'pycharm-interpreter'
+  };
+  return map[branch] || branch;
+}
+
+function generateDeepLink(branch) {
+  const base = window.location.origin + '/fix/pip-environment/';
+  const params = new URLSearchParams({ diag: branchToCode(branch), os: S.os });
+  if (S.pipVersion) params.set('pv', S.pipVersion);
+  if (S.pyVersion)  params.set('yv', S.pyVersion);
+  return base + '?' + params.toString();
+}
+
+function copyDeepLink(branch) {
+  const url = generateDeepLink(branch);
+  // Also provide SO comment template
+  const diagNames = {
+    A:'Python version mismatch', B:'Python installation mismatch',
+    C:'user-site install conflict', D1:'venv activation issue',
+    D2:'sys.path mismatch', D3:'conda + pip conflict',
+    J:'Jupyter kernel mismatch', IVS:'VS Code interpreter mismatch',
+    IPY:'PyCharm interpreter mismatch'
+  };
+  const name = diagNames[branch] || 'pip environment issue';
+  const comment = `This looks like a ${name}. This tool diagnosed it and gives the exact fix:\n${url}`;
+  navigator.clipboard.writeText(comment).catch(() => {});
+  const btn = event.target;
+  btn.textContent = '✓ Link + SO comment copied';
+  setTimeout(() => { btn.textContent = '🔗 Share this diagnosis'; }, 2500);
+}
+
+// ─── Diagnosis card renderer ───────────────────────────────────────────────────
+function renderDiagnosis(branch, fromDeepLink) {
+  S.branch = branch;
+  S.diagCode = branchToCode(branch);
+
+  const pv = S.pipVersion || '?';
+  const yv = S.pyVersion  || '?';
+  const isWin = S.os === 'win';
+  const pyCmd = isWin ? 'python' : 'python3';
+
+  // Echo paths from user input (or deep link params)
+  const pipEcho = S.pipRaw || (S.pipVersion ? `(Python ${pv})` : '');
+  const pyEcho  = S.pyRaw  || (S.pyVersion  ? `Python ${yv}` : '');
+
+  let html = '';
+
+  if (branch === 'A') {
+    // Version mismatch — most critical: fix command uses yv (running python's version)
+    const fixCmd = `${pyCmd}${yv} -m pip install [package]`;
+    html = card('version-mismatch', 'DIAGNOSIS: Different Python versions',
+      `pip is linked to Python <strong>${pv}</strong> and installed your package there. Your script runs on Python <strong>${yv}</strong> where that package doesn't exist.`,
+      pipEcho, pyEcho,
+      fixCmd,
+      `<code>${pyCmd}${yv}&nbsp;-m&nbsp;pip</code> runs pip inside Python ${yv} — the exact interpreter running your script. The package lands where it can be found.`,
+      buildCopyAll('A'), branch);
+  }
+
+  else if (branch === 'B') {
+    const fixCmd = `${pyCmd} -m pip install [package]`;
+    html = card('path-mismatch', 'DIAGNOSIS: Different Python installations',
+      `pip and Python ${yv || ''} are installed from different sources (e.g. Homebrew vs system Python, or pyenv vs system Python). They share a version number but have separate site-packages directories — installs from one are invisible to the other.`,
+      pipEcho, pyEcho,
+      fixCmd,
+      `<code>${pyCmd}&nbsp;-m&nbsp;pip</code> always targets the same Python that <code>${pyCmd}</code> runs, bypassing the PATH mismatch entirely.`,
+      buildCopyAll('B'), branch);
+  }
+
+  else if (branch === 'C') {
+    const fixCmd = isWin
+      ? 'pip install [package]   (inside your activated venv)'
+      : 'source venv/bin/activate && pip install [package]';
+    html = card('user-site-conflict', 'DIAGNOSIS: User-site install conflict',
+      `pip installed your package to your user site-packages (<code>~/.local/lib/python${pv}/</code>). Virtual environments exclude user site-packages from their <code>sys.path</code> by default, so the package is invisible inside any active venv.`,
+      pipEcho, pyEcho,
+      fixCmd,
+      `Inside an active venv, <code>pip install</code> (without <code>--user</code>) installs directly to the venv's own site-packages, which is always on <code>sys.path</code>.`,
+      buildCopyAll('C'), branch);
+  }
+
+  else if (branch === 'D1') {
+    const fixCmd = `pip uninstall [package]\n# then:\npip install [package]`;
+    html = card('venv-inactive', 'DIAGNOSIS: Package installed before venv was activated',
+      `Your venv is active now, but the package was installed when the venv was not active. pip installed it to the system Python's site-packages — outside the venv where your script is running.`,
+      pipEcho, pyEcho,
+      fixCmd,
+      `Uninstalling removes it from the wrong location. Reinstalling inside the active venv puts it in the right one.`,
+      buildCopyAll('D1'), branch);
+  }
+
+  else if (branch === 'D2') {
+    // sys.path investigation
+    const diagCmd = `pip show [package]\n${pyCmd} -c "import sys; print('\\n'.join(sys.path))"`;
+    html = card('syspath-check', 'INVESTIGATION: Paths match — checking sys.path',
+      `Your pip and Python appear to come from the same installation, but the import is still failing. The package's install location may not be on Python's <code>sys.path</code>.`,
+      pipEcho, pyEcho,
+      diagCmd,
+      `Compare the <strong>Location:</strong> field from <code>pip show</code> against the paths printed by <code>sys.path</code>. If the Location isn't listed, run <code>${pyCmd} -m pip install [package]</code> to force correct placement.`,
+      buildCopyAll('D2'), branch);
+  }
+
+  else if (branch === 'D3') {
+    const fixCmd = `conda install -c conda-forge [package]\n# or:\n${pyCmd} -m pip install [package]`;
+    html = card('conda-conflict', 'DIAGNOSIS: conda + pip environment conflict',
+      `Inside a conda environment, the <code>pip</code> command may install to a Python outside the active conda environment. This is the most common cause of invisible installs in conda setups.`,
+      pipEcho, pyEcho,
+      fixCmd,
+      `<code>conda install</code> always targets the active conda environment. If you must use pip, <code>${pyCmd}&nbsp;-m&nbsp;pip</code> targets the environment's Python directly.`,
+      buildCopyAll('D3'), branch);
+  }
+
+  else if (branch === 'J') {
+    html = `<div class="diag-card jupyter-kernel" style="margin-top:1.25rem">
+      <div class="diag-label" style="color:#be123c">DIAGNOSIS: Jupyter kernel mismatch</div>
+      <p>Jupyter's kernel is a separate Python process — not your terminal's Python. Running <code>pip install</code> in a terminal installs to the terminal's Python. The Jupyter kernel may never see it.</p>
+      <h3>Fix: install into the kernel's Python directly</h3>
+      <p class="text-sm text-muted" style="margin-bottom:.3rem">Run this inside a notebook cell:</p>
+      <div class="cmd-row">
+        <pre><code>import sys
+!{sys.executable} -m pip install [package]</code></pre>
+        <button class="btn-sm" onclick="copyText(this,'import sys\\n!{sys.executable} -m pip install [package]')">Copy</button>
+      </div>
+      <p class="text-sm text-muted" style="margin-bottom:.35rem">Or register your venv as a named kernel:</p>
+      <div class="cmd-row">
+        <pre><code>pip install ipykernel
+python -m ipykernel install --user --name=myenv --display-name="My Env"</code></pre>
+        <button class="btn-sm" onclick="copyText(this,'pip install ipykernel\\npython -m ipykernel install --user --name=myenv --display-name=\\'My Env\\'')">Copy</button>
+      </div>
+      <p class="text-sm">After installing via either method, <strong>restart the kernel</strong> and try importing again.</p>
+      <div class="action-row">
+        <button class="btn-sm" onclick="copyCopyAll('J')">Copy all diagnostic commands</button>
+        <button class="btn-sm" onclick="copyDeepLink('J')">🔗 Share this diagnosis</button>
+        <button class="btn-sm" onclick="didntWork('J')">✗ This didn't work</button>
+      </div>
+    </div>`;
+  }
+
+  else if (branch === 'IVS') {
+    html = ideCard('IVS', 'VS Code',
+      `<p>VS Code's Python extension uses a separately configured interpreter — not necessarily the same Python your terminal uses. pip may have installed to a different Python than VS Code is running.</p>
+      <ol style="margin:.75rem 0 .75rem 1.25rem;font-size:.9rem;line-height:1.8">
+        <li>Press <kbd>Cmd+Shift+P</kbd> (Mac) or <kbd>Ctrl+Shift+P</kbd> (Windows/Linux)</li>
+        <li>Type <strong>Python: Select Interpreter</strong> and press Enter</li>
+        <li>Choose the interpreter that matches where pip installs — look for your venv path or the Python version from <code>pip --version</code></li>
+        <li>Open a new terminal in VS Code — it will now use the selected Python</li>
+        <li>Run <code>pip install [package]</code> from that terminal</li>
+        <li>Run your script again</li>
+      </ol>
+      <p class="text-sm text-muted">Not sure which to choose? Run <code>pip --version</code> in the VS Code terminal and compare the Python path to what the Python: Select Interpreter dialog shows.</p>`);
+  }
+
+  else if (branch === 'IPY') {
+    html = ideCard('IPY', 'PyCharm',
+      `<p>PyCharm maintains its own project interpreter setting, separate from your system PATH. Installing a package in a terminal outside PyCharm may not reach PyCharm's Python.</p>
+      <ol style="margin:.75rem 0 .75rem 1.25rem;font-size:.9rem;line-height:1.8">
+        <li>Open <strong>File → Settings</strong> (Windows/Linux) or <strong>PyCharm → Settings</strong> (Mac)</li>
+        <li>Navigate to <strong>Project → Python Interpreter</strong></li>
+        <li>Click the gear icon ⚙ → <strong>Add Interpreter → Add Local Interpreter</strong></li>
+        <li>Select <strong>Existing environment</strong></li>
+        <li>Navigate to the Python binary that matches your pip's Python version</li>
+        <li>Click <strong>Apply → OK</strong>, then re-run your script</li>
+      </ol>
+      <p class="text-sm text-muted">Alternatively, use PyCharm's built-in terminal (it uses the project interpreter automatically) to run <code>pip install [package]</code>.</p>`);
+  }
+
+  else if (branch === 'E') {
+    // Fallback / couldn't parse
+    html = `<div class="diag-card syspath-check" style="margin-top:1.25rem">
+      <div class="diag-label" style="color:var(--muted)">Couldn't parse the output</div>
+      <p>We couldn't extract a Python version from what you entered. This might mean the output format was different than expected, or the fields were left empty.</p>
+      <p class="text-sm text-muted">Try copying the <em>complete</em> output of <code>pip --version</code> — it should look like:<br>
+      <code>pip 23.0.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)</code></p>
+      <p class="text-sm">In the meantime, the manual checklist below covers all cases.</p>
+    </div>`;
+    document.getElementById('fallback-section').classList.remove('hidden');
+  }
+
+  document.getElementById('diag-area').innerHTML = html;
+  document.getElementById('diag-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── Card template ─────────────────────────────────────────────────────────────
+function card(cls, title, cause, pipEcho, pyEcho, fixCmd, why, copyAllText, branch) {
+  const pathsHtml = (pipEcho || pyEcho) ? `
+    <div class="diag-paths">
+      <span>Your pip --version output:</span>${escHtml(pipEcho)}
+      <span style="margin-top:.4rem">Your python --version output:</span>${escHtml(pyEcho)}
+    </div>` : '';
+
+  return `<div class="diag-card ${cls}" style="margin-top:1.25rem">
+    <div class="diag-label" style="color:var(--text-muted)">${title}</div>
+    <p style="margin-top:.4rem">${cause}</p>
+    ${pathsHtml}
+    <p><strong>Fix:</strong></p>
+    <div class="cmd-row">
+      <pre><code>${escHtml(fixCmd)}</code></pre>
+      <button class="btn-sm" onclick="copyText(this,${JSON.stringify(fixCmd)})">Copy</button>
+    </div>
+    <p class="text-sm text-muted"><strong>Why this works:</strong> ${why}</p>
+    <div class="action-row">
+      <button class="btn-sm" onclick="copyCopyAll(${JSON.stringify(branch)})">Copy all diagnostic commands</button>
+      <button class="btn-sm" onclick="copyDeepLink(${JSON.stringify(branch)})">🔗 Share this diagnosis</button>
+      <button class="btn-sm" onclick="didntWork(${JSON.stringify(branch)})">✗ This didn't work</button>
+    </div>
+  </div>`;
+}
+
+function ideCard(branch, ideName, content) {
+  return `<div class="diag-card ide-interpreter" style="margin-top:1.25rem">
+    <div class="diag-label" style="color:#047857">DIAGNOSIS: ${ideName} interpreter mismatch</div>
+    ${content}
+    <div class="action-row">
+      <button class="btn-sm" onclick="copyCopyAll(${JSON.stringify(branch)})">Copy all diagnostic commands</button>
+      <button class="btn-sm" onclick="copyDeepLink(${JSON.stringify(branch)})">🔗 Share this diagnosis</button>
+      <button class="btn-sm" onclick="didntWork(${JSON.stringify(branch)})">✗ This didn't work</button>
+    </div>
+  </div>`;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── "This didn't work" flow ───────────────────────────────────────────────────
+const nextBranch = { A:'B', B:'D2', C:'D1', D1:'D2', D2:'E', D3:'B', J:'IVS', IVS:'IPY', IPY:'E' };
+
+function didntWork(branch) {
+  S.attempt++;
+  const next = nextBranch[branch];
+  if (!next || next === 'E') {
+    document.getElementById('fallback-section').classList.remove('hidden');
+    document.getElementById('fallback-section').scrollIntoView({ behavior:'smooth', block:'start'});
+    return;
+  }
+  // Append a "trying next most likely" note then re-render
+  const note = document.createElement('p');
+  note.className = 'text-sm text-muted';
+  note.style.marginTop = '.5rem';
+  note.textContent = `That fix didn't apply — trying the next most likely cause.`;
+  document.getElementById('diag-area').appendChild(note);
+
+  if (next === 'D') { showVenvCheck(); return; }
+  S.branch = next;
+  renderDiagnosis(next, false);
+}
+
+// ─── Wizard flow actions ───────────────────────────────────────────────────────
+function checkPaths() {
+  S.pipRaw = document.getElementById('pip-out').value;
+  S.pyRaw  = document.getElementById('py-out').value;
+
+  if (!S.pipRaw.trim() && !S.pyRaw.trim()) {
+    alert('Please paste the output of pip --version and python3 --version before continuing.');
+    return;
+  }
+
+  const branch = classifyBranch();
+  if (branch === 'D') {
+    showVenvCheck();
+    return;
+  }
+  renderDiagnosis(branch, false);
+}
+
+function showVenvCheck() {
+  const vc = document.getElementById('venv-check');
+  vc.classList.remove('hidden');
+  vc.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function subBranch(sb) {
+  S.subBranch = sb;
+  renderDiagnosis(sb, false);
+  document.getElementById('venv-check').classList.add('hidden');
+}
+
+function jumpTo(branch) {
+  S.branch = branch;
+  renderDiagnosis(branch, false);
+  document.getElementById('diag-area').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// ─── Deep-link loader ──────────────────────────────────────────────────────────
+function loadFromDeepLink() {
+  const params = new URLSearchParams(window.location.search);
+  const diag = params.get('diag');
+  if (!diag) return;
+
+  const codeToB = {
+    'version-mismatch':'A', 'path-mismatch':'B', 'user-site-conflict':'C',
+    'venv-inactive':'D1', 'syspath-check':'D2', 'conda-conflict':'D3',
+    'jupyter-kernel':'J', 'vscode-interpreter':'IVS', 'pycharm-interpreter':'IPY'
+  };
+  const branch = codeToB[diag];
+  if (!branch) return;
+
+  // Restore context from URL params
+  const os = params.get('os');
+  if (os === 'win' || os === 'mac') selectOS(os);
+
+  const pv = params.get('pv');
+  const yv = params.get('yv');
+  if (pv) { S.pipVersion = pv; S.pipRaw = `pip X.X from ... (python ${pv})`; }
+  if (yv) { S.pyVersion  = yv; S.pyRaw  = `Python ${yv}`; }
+
+  // Collapse wizard, show diagnosis directly
+  document.getElementById('wizard').classList.add('hidden');
+
+  const note = document.createElement('p');
+  note.className = 'text-sm text-muted';
+  note.style.margin = '.75rem 0';
+  note.innerHTML = `<em>Linked directly to a specific diagnosis. <a href="/fix/pip-environment/">Run the full diagnostic instead →</a></em>`;
+  document.getElementById('diag-area').before(note);
+
+  renderDiagnosis(branch, true);
+}
+
+// ─── Init ──────────────────────────────────────────────────────────────────────
+detectOS();
+loadFromDeepLink();
+</script>
+</body>
+</html>
